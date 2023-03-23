@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CriarConta2">
+
+    <TextView
+        android:id="@+id/tvTeethKids"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teeth Kids"
+        android:layout_centerHorizontal="true"
+        android:textSize="50sp"
+        android:layout_marginTop="60dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvCurriculo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Currículo:"
+        android:layout_below="@+id/tvTeethKids"
+        android:layout_marginTop="40dp"
+        android:layout_alignStart="@+id/tvTeethKids"
+        android:textSize="25sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+
+    <EditText
+        android:id="@+id/etCurriculo"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:hint="Digite aqui seu currículo..."
+        android:minLines="5"
+        android:layout_below="@+id/tvCurriculo"
+        android:layout_alignStart="@+id/tvCurriculo"
+        android:layout_marginTop="30dp">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/btnAvancar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Avançar"
+        android:layout_below="@+id/etCurriculo"
+        android:layout_marginTop="283dp"
+        android:layout_toRightOf="@+id/btnVoltar"
+        android:layout_marginStart="80dp"
+        android:textSize="20sp">
+
+    </Button>
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:layout_below="@+id/etCurriculo"
+        android:layout_marginTop="283dp"
+        android:layout_marginStart="40dp"
+        android:textSize="20sp">
+
+    </Button>
+
+</RelativeLayout>
