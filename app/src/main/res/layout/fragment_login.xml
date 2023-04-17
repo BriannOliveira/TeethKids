@@ -17,15 +17,6 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/tvSeila"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp">
-
-    </TextView>
-
-
-    <TextView
         android:id="@+id/tvNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -6,71 +6,31 @@ import android.os.Bundle
 import android.widget.Button
 import android.content.Intent
 import android.widget.EditText
+import androidx.navigation.findNavController
+import br.com.minhaempresa.teethkids.databinding.ActivityCriarContaBinding
 import br.com.minhaempresa.teethkids.databinding.FragmentLoginBinding
 
 class CriarConta : AppCompatActivity() {
-    private var nome: String = ""
-    private var email: String = ""
-    private var telefone: String = ""
+
+    private lateinit var binding: ActivityCriarContaBinding
 
 
     //Quando criar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_criar_conta)
 
+        binding = ActivityCriarContaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        //Declaração de variáveis
-        //Botões:
-        val btnAvancar: Button = findViewById(R.id.btnAvancar)
-        val btnVoltar: Button = findViewById(R.id.btnVoltar)
 
         //Intents:
         val intentMain = Intent(this, MainActivity::class.java)
 
-        if(savedInstanceState == null){
-            supportFragmentManager
-                .beginTransaction()
-                .add(R.id.container, LoginFragment())
-                .commit()
-        }
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
 
-
-        //Verificando se há algum estado salvo anteriormente para restaurar as informações salvadas
-        if(savedInstanceState != null)
-        {
-            nome = savedInstanceState.getString("nome","")
-            email = savedInstanceState.getString("email", "")
-            telefone = savedInstanceState.getString("telefone","")
-        }
-
-
-        //Voltar para a tela inicial
-        btnVoltar.setOnClickListener()
-        {
-            startActivity(intentMain)
-            finish()
-        }
     }
 
-    //Salvando pela primeira vez as informações digitadas em um Estado de UI em Bundle
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        //Declaração de variáveis
-        //EditText
-        val etNome : EditText = findViewById(R.id.etNome)
-        val etEmail: EditText = findViewById(R.id.etEmail)
-        val etTelefone: EditText = findViewById(R.id.etTelefone)
-
-        //Guardando as informações digitas nas propriedades do objeto Bundle do SavedInstanceState pela primeira vez
-        outState.putString("nome", etNome.text.toString())
-        outState.putString("email",etEmail.text.toString())
-        outState.putString("telefone",etTelefone.text.toString())
-    }
-
-    private fun cadastrarUsuário(){
-        //Lógica para cadastrar o usuário no banco de dados
+    private fun cadastrarUsuário(){        //Lógica para cadastrar o usuário no banco de dados
         //Aqui pode chamar um API ou salvar os dados em um banco de dados local
     }
 }
