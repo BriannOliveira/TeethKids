@@ -6,16 +6,19 @@ import android.os.Bundle
 import android.widget.Button
 import android.content.Intent
 import android.widget.EditText
+import br.com.minhaempresa.teethkids.databinding.FragmentLoginBinding
 
 class CriarConta : AppCompatActivity() {
     private var nome: String = ""
     private var email: String = ""
     private var telefone: String = ""
 
+
     //Quando criar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_criar_conta)
+        //setContentView(R.layout.activity_criar_conta)
+
 
         //Declaração de variáveis
         //Botões:
@@ -24,7 +27,13 @@ class CriarConta : AppCompatActivity() {
 
         //Intents:
         val intentMain = Intent(this, MainActivity::class.java)
-        val intentCriarConta2 = Intent(this, CriarConta2::class.java)
+
+        if(savedInstanceState == null){
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.container, LoginFragment())
+                .commit()
+        }
 
 
         //Verificando se há algum estado salvo anteriormente para restaurar as informações salvadas
@@ -35,13 +44,6 @@ class CriarConta : AppCompatActivity() {
             telefone = savedInstanceState.getString("telefone","")
         }
 
-        //Função para avançar a tela
-        btnAvancar.setOnClickListener()
-        {
-
-            startActivity(intentCriarConta2)
-            finish()
-        }
 
         //Voltar para a tela inicial
         btnVoltar.setOnClickListener()
