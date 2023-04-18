@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".LoginFragment">
 
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/itooth_logo"
+        android:layout_below="@+id/tv_iTooth"
+        android:layout_centerHorizontal="true"/>
+
+
 
     <TextView
         android:id="@+id/tv_iTooth"
@@ -16,18 +25,19 @@
         android:textSize="50sp"
         android:layout_marginTop="60dp"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/greenbl"/>
 
 
     <EditText
         android:id="@+id/etTelefone"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_iTooth"
+        android:layout_below="@id/imgLogo"
         android:layout_centerHorizontal="true"
         android:inputType="phone"
         android:hint="Digite seu telefone..."
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="20dp"
+        >
 
     </EditText>
 
@@ -35,12 +45,13 @@
         android:id="@+id/btnAvancar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Avançar"
+        android:text="Enviar"
         android:layout_below="@+id/etTelefone"
         android:layout_marginTop="60dp"
         android:layout_toRightOf="@id/btnVoltar"
         android:textSize="20sp"
-        android:layout_marginStart="80dp">
+        android:layout_marginStart="80dp"
+        android:backgroundTint="@color/greenbl">
 
     </Button>
 
@@ -52,7 +63,8 @@
         android:textSize="20sp"
         android:layout_below="@id/etTelefone"
         android:layout_marginTop="60dp"
-        android:layout_marginStart="40dp">
+        android:layout_marginStart="40dp"
+        android:backgroundTint="@color/greenbl">
 
     </Button>
 

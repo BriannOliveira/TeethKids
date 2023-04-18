@@ -15,7 +15,7 @@
         android:textSize="50sp"
         android:layout_marginTop="60dp"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/greenbl"/>
 
     <TextView
         android:id="@+id/tvCurriculo"
@@ -27,7 +27,7 @@
         android:layout_alignStart="@+id/etCurriculo"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:textColor="@color/black">
+        android:textColor="@color/greenbl">
 
     </TextView>
 
@@ -54,7 +54,8 @@
         android:layout_marginTop="80dp"
         android:layout_toRightOf="@+id/btnVoltar"
         android:layout_marginStart="80dp"
-        android:textSize="20sp">
+        android:textSize="20sp"
+        android:backgroundTint="@color/greenbl">
 
     </Button>
 
@@ -66,7 +67,8 @@
         android:layout_below="@+id/etCurriculo"
         android:layout_marginTop="80dp"
         android:layout_marginStart="40dp"
-        android:textSize="20sp">
+        android:textSize="20sp"
+        android:backgroundTint="@color/greenbl">
 
     </Button>
 
