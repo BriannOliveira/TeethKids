@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginFragment4">
+
+
+    <TextView
+        android:id="@+id/tv_iTooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="iTooth"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/greenbl"
+        />
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/svPreviewview"
+        android:layout_width="350dp"
+        android:layout_height="430dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tv_iTooth"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/svPreviewview"
+        android:layout_centerHorizontal="true"
+        android:text="Tirar foto"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:backgroundTint="@color/greenbl"/>
+
+
+
+</RelativeLayout>

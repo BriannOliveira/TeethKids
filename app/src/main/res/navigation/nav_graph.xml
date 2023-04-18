@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/LoginFragment">
+
+    <!--Declarção da atividade-->
+    <activity
+        android:id="@+id/MainActivity"
+        android:name="br.com.minhaempresa.teethkids.MainActivity"/>
+
+    <!--Declaração dos fragments e as ações-->
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="br.com.minhaempresa.teethkids.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+
+        <!-- Ação da tela do primeiro Fragment para ir para o segundo Fragment do Login-->
+        <action
+            android:id="@+id/action_LoginFragment_to_LoginFragment2"
+            app:destination="@id/LoginFragment2"/>
+
+        <!-- Ação da tela do primeiro Fragment para voltar para a MainActivity-->
+        <action
+            android:id="@+id/action_LoginFragment_comeBack"
+            app:destination="@id/MainActivity"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/LoginFragment2"
+        android:name="br.com.minhaempresa.teethkids.LoginFragment2"
+        android:label="Login"
+        tools:layout="@layout/fragment_login2">
+
+        <!-- Ação da tela do segundo Fragment para voltar para o primeiro Fragment-->
+        <action
+            android:id="@+id/action_LoginFragment2_to_LoginFragment"
+            app:destination="@id/LoginFragment"/>
+
+        <!-- Ação da tela do segundo Fragment para ir para o terceiro Fragment-->
+        <action
+            android:id="@+id/action_LoginFragment2_to_LoginFragment3"
+            app:destination="@id/LoginFragment3"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/LoginFragment3"
+        android:name="br.com.minhaempresa.teethkids.LoginFragment3"
+        android:label="Login"
+        tools:layout="@layout/fragment_login3">
+
+        <!-- Ação da tela do terceiro Fragment para voltar para o segundo Fragment-->
+        <action
+            android:id="@+id/action_LoginFragment3_to_LoginFragment2"
+            app:destination="@id/LoginFragment2"/>
+
+        <action
+            android:id="@+id/action_LoginFragment3_to_LoginFragment4"
+            app:destination="@id/LoginFragment4"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/LoginFragment4"
+        android:name="br.com.minhaempresa.teethkids.LoginFragment4"
+        android:label="Login"
+        tools:layout="@layout/fragment_login4">
+
+
+    </fragment>
+
+</navigation>
