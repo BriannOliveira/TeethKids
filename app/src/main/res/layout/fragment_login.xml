@@ -1,97 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment">
+    tools:context=".LoginFragment3">
 
     <TextView
-        android:id="@+id/tvTeethKids"
+        android:id="@+id/tv_iTooth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Teeth Kids"
-        android:layout_centerHorizontal="true"
+        android:text="iTooth"
         android:textSize="50sp"
-        android:layout_marginTop="60dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/tvNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nome:"
-        android:layout_below="@+id/tvTeethKids"
-        android:layout_alignStart="@+id/tvTeethKids"
-        android:layout_marginTop="100dp"
-        android:textSize="25sp"
-        android:textStyle="bold">
+    <ImageView
+        android:id="@+id/imgUsuario"
+        android:layout_width="200dp"
+        android:layout_height="140dp"
+        android:src="@drawable/avatar"
+        android:layout_below="@+id/tv_iTooth"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:clickable="true"/>
 
-    </TextView>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/add"
+        android:layout_marginStart="235dp"
+        android:layout_marginTop="320dp"
+        android:background="@color/white"
+        android:clickable="true"
+        />
 
     <EditText
         android:id="@+id/etNome"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvNome"
-        android:layout_alignStart="@+id/tvNome"
-        android:inputType="textPersonName">
+        android:layout_below="@+id/imgUsuario"
+        android:layout_alignStart="@+id/et_Senha"
+        android:layout_marginTop="40dp"
+        android:hint="Digite seu nome..."
+        />
 
-    </EditText>
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
+
+    <EditText
+        android:id="@+id/et_Senha"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="E-mail:"
+        android:inputType="textPassword"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/etNome"
-        android:layout_alignStart="@+id/etNome"
-        android:layout_marginTop="35dp"
-        android:textSize="25sp"
-        android:textStyle="bold">
+        android:hint="Digite sua senha..."
+        android:layout_marginTop="25dp"
+        />
 
-    </TextView>
+
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvEmail"
-        android:layout_alignStart="@+id/tvEmail"
-        android:inputType="textEmailAddress">
-
-    </EditText>
-
-    <TextView
-        android:id="@+id/tvTelefone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telefone:"
-        android:layout_below="@+id/etEmail"
-        android:layout_alignStart="@+id/etEmail"
-        android:layout_marginTop="35dp"
-        android:textSize="25sp"
-        android:textStyle="bold">
-
-    </TextView>
-
-    <EditText
-        android:id="@+id/etTelefone"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTelefone"
-        android:layout_alignStart="@+id/tvTelefone"
-        android:inputType="phone">
-
-    </EditText>
+        android:layout_below="@+id/et_Senha"
+        android:layout_alignStart="@+id/etNome"
+        android:hint="Digite seu e-mail..."
+        android:layout_marginTop="25dp"/>
 
     <Button
         android:id="@+id/btnAvancar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Avançar"
-        android:layout_below="@+id/etTelefone"
-        android:layout_marginTop="110dp"
+        android:layout_below="@+id/etEmail"
+        android:layout_marginTop="40dp"
         android:layout_toRightOf="@id/btnVoltar"
         android:textSize="20sp"
         android:layout_marginStart="80dp">
@@ -104,11 +89,12 @@
         android:layout_height="wrap_content"
         android:text="Voltar"
         android:textSize="20sp"
-        android:layout_below="@id/etTelefone"
-        android:layout_marginTop="110dp"
+        android:layout_below="@id/etEmail"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="40dp">
 
     </Button>
+
 
 
 </RelativeLayout>

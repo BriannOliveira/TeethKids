@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         btnCriarConta.setOnClickListener()
         {
             startActivity(intentCriarConta)
-            finish()
         }
     }
 }

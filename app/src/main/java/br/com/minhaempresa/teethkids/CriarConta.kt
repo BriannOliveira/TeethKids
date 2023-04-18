@@ -3,12 +3,12 @@ package br.com.minhaempresa.teethkids
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.content.Intent
-import android.widget.EditText
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import br.com.minhaempresa.teethkids.databinding.ActivityCriarContaBinding
-import br.com.minhaempresa.teethkids.databinding.FragmentLoginBinding
+
+
 
 class CriarConta : AppCompatActivity() {
 
@@ -23,10 +23,12 @@ class CriarConta : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        //Intents:
-        val intentMain = Intent(this, MainActivity::class.java)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        navController.navigate(R.id.nav_graph)
 
     }
 
