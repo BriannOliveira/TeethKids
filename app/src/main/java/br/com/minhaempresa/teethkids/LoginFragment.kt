@@ -34,9 +34,6 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Declaração de variáveis
-        val senha = binding.etSenha.toString()
-        val email = binding.etEmail.toString()
 
         //Configuração para a imagem ter função para tirar selfie
         binding.imgUsuario.setOnClickListener(){
@@ -44,28 +41,29 @@ class LoginFragment : Fragment() {
             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
         }
 
-        //Ação caso o campo do email e senha estiver vazio
-        if(email.isEmpty()||(senha.isEmpty())){
-            val snackbar = Snackbar.make(view,"Preencha o campo email", Snackbar.LENGTH_SHORT)
-            snackbar.setBackgroundTint(Color.RED)
-            snackbar.show()
-
-        }
-        else{
-            auth.createUserWithEmailAndPassword(email,senha).addOnCompleteListener{cadastro ->
-                if (cadastro.isSuccessful) {
-                    binding.btnAvancar.setOnClickListener(){
-                        findNavController().navigate(R.id.action_LoginFragment_to_LoginFragment2)
-                    }
-                }
-            }.addOnFailureListener{
-
-            }
-        }
-
         //Botão para ir para o terceiro fragmento do login
         binding.btnAvancar.setOnClickListener(){
-            findNavController().navigate(R.id.action_LoginFragment_to_LoginFragment2)
+
+            //Declaração de variáveis e transformando o conteúdo das variáveis em String
+            val senha = binding.etSenha.text.toString()
+            val email = binding.etEmail.text.toString()
+
+            //Ação caso o campo do email e senha estiver vazio
+            if(email.isEmpty()||(senha.isEmpty())){
+                val snackbar = Snackbar.make(view,"Preencha o campo email", Snackbar.LENGTH_SHORT)
+                snackbar.setBackgroundTint(Color.RED)
+                snackbar.show()
+
+            }
+            else{
+                auth.createUserWithEmailAndPassword(email,senha).addOnCompleteListener{cadastro ->
+                    if (cadastro.isSuccessful) {
+                        findNavController().navigate(R.id.action_LoginFragment_to_LoginFragment2)
+                    }
+                }.addOnFailureListener{
+
+                }
+            }
         }
 
         //Botão voltar para a MainActivity

@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTeethKids"
         android:text="E-mail:"
-        android:layout_alignStart="@+id/tvTeethKids"
+        android:layout_alignStart="@+id/etEmail"
         android:layout_marginTop="100dp"
         android:textSize="20dp"
         android:textStyle="bold">
@@ -33,10 +33,9 @@
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="150dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvEmail"
-        android:layout_alignStart="@+id/tvEmail"
         android:layout_centerHorizontal="true"
         >
 
