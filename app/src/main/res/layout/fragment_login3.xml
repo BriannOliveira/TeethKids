@@ -13,32 +13,43 @@
         android:text="iTooth"
         android:layout_centerHorizontal="true"
         android:textSize="50sp"
-        android:layout_marginTop="60dp"
         android:textStyle="bold"
-        android:textColor="@color/greenbl"/>
+        android:textColor="@color/greenbl"
+        android:layout_marginTop="25dp"
+        />
+
+    <ImageView
+        android:id="@+id/imgiLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/itooth_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_iTooth"
+        />
+
 
     <TextView
         android:id="@+id/tvCurriculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Currículo:"
-        android:layout_below="@+id/tv_iTooth"
-        android:layout_marginTop="40dp"
+        android:layout_below="@+id/imgiLogo"
         android:layout_alignStart="@+id/etCurriculo"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/greenbl">
+        android:textColor="@color/greenbl"
+        android:layout_marginTop="50dp"
+        >
 
     </TextView>
 
 
     <EditText
         android:id="@+id/etCurriculo"
-        android:layout_width="246dp"
-        android:layout_height="326dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/tvCurriculo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         android:hint="Digite aqui seu currículo..."
         android:inputType="textMultiLine"
         android:minLines="5">
@@ -49,14 +60,12 @@
         android:id="@+id/btnAvancar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Avançar"
+        android:text="Enviar"
         android:layout_below="@+id/etCurriculo"
-        android:layout_marginTop="80dp"
-        android:layout_toRightOf="@+id/btnVoltar"
-        android:layout_marginStart="80dp"
-        android:textSize="20sp"
+        android:layout_marginTop="75dp"
+        android:textSize="25sp"
+        android:layout_alignEnd="@id/etCurriculo"
         android:backgroundTint="@color/greenbl">
-
     </Button>
 
     <Button
@@ -64,12 +73,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Voltar"
-        android:layout_below="@+id/etCurriculo"
-        android:layout_marginTop="80dp"
-        android:layout_marginStart="40dp"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:layout_below="@id/etCurriculo"
+        android:layout_marginTop="75dp"
+        android:layout_alignStart="@id/etCurriculo"
         android:backgroundTint="@color/greenbl">
-
     </Button>
 
 </RelativeLayout>

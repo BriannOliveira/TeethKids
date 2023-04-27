@@ -8,6 +8,7 @@
     android:layout_gravity="center"
     tools:context=".MainActivity">
 
+
     <TextView
         android:id="@+id/tvTeethKids"
         android:layout_width="wrap_content"
@@ -16,24 +17,39 @@
         android:layout_centerHorizontal="true"
         android:textSize="50dp"
         android:textStyle="bold"
-        android:layout_marginTop="100dp" />
+        android:textColor="@color/greenbl"
+        android:layout_marginTop="25dp"
+        />
+
+    <ImageView
+        android:id="@+id/imgiLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/itooth_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tvTeethKids"
+        />
+
 
     <TextView
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTeethKids"
+        android:layout_below="@+id/imgiLogo"
         android:text="E-mail:"
         android:layout_alignStart="@+id/etEmail"
         android:layout_marginTop="100dp"
         android:textSize="20dp"
-        android:textStyle="bold">
+        android:textColor="@color/greenbl"
+        android:textStyle="bold"
+        >
+
 
     </TextView>
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvEmail"
         android:layout_centerHorizontal="true"
