@@ -1,0 +1,74 @@
+package br.com.minhaempresa.teethkids
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.content.Intent
+import android.widget.Button
+import androidx.navigation.fragment.NavHostFragment
+import br.com.minhaempresa.teethkids.databinding.ActivityMainBinding
+import br.com.minhaempresa.teethkids.databinding.ActivityMenuBinding
+import br.com.minhaempresa.teethkids.datastore.UserPreferencesRepository
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.FirebaseApp
+import com.google.firebase.appcheck.FirebaseAppCheck
+import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
+
+
+class MainActivity : AppCompatActivity() {
+
+    /** Essa atividade pode ser a do Login, renomear o nome para LoginActivity**/
+    private lateinit var userPreferencesRepository: UserPreferencesRepository
+    private lateinit var auth: FirebaseAuth
+    private lateinit var binding: ActivityMainBinding
+
+    private fun prepareFirebsaeAppCheckDebug(){
+        FirebaseApp.initializeApp(this)
+        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+        firebaseAppCheck.installAppCheckProviderFactory(
+            DebugAppCheckProviderFactory.getInstance()
+        )
+    }
+
+
+    fun storeUserId(uid: String) {
+        userPreferencesRepository.uid = uid
+    }
+
+    private fun storeFcmToken() {
+        Firebase.messaging.token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                return@OnCompleteListener
+            }
+            //guardar esse token
+            userPreferencesRepository.fcmToken = task.result
+        })
+    }
+
+    fun getFcmToken(): String {
+        return userPreferencesRepository.fcmToken
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        navController.navigate(R.id.nav_graph)
+
+        userPreferencesRepository = UserPreferencesRepository.getInstance(this)
+
+        // disponibilizando o token (que deve ser colocado lá no APP CHECK do Firebase).
+        prepareFirebsaeAppCheckDebug()
+
+        // guardar o token FCM pois iremos precisar.
+        storeFcmToken()
+
+
+    }
+}

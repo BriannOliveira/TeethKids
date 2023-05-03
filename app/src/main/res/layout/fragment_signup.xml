@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpFragment">
+
+
+
+
+    <ImageView
+        android:id="@+id/imgiLogo"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:src="@drawable/itoothnome"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/imgUsuario"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/avatar3"
+        android:layout_below="@+id/imgiLogo"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:layout_marginTop="25dp"
+        />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/imgUsuario"
+        android:layout_alignRight="@+id/imgUsuario"
+        android:background="@color/white"
+        android:clickable="true"
+        android:src="@drawable/add"
+
+        />
+
+    <EditText
+        android:id="@+id/etNome"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/imgUsuario"
+        android:layout_alignStart="@+id/etSenha"
+        android:layout_marginTop="50dp"
+        android:textSize="15sp"
+        android:hint="  Digite seu nome"
+        android:background="@drawable/rounded_edittext"
+        />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/etNome"
+        android:layout_alignStart="@+id/etNome"
+        android:textSize="15sp"
+        android:hint="  Digite seu e-mail"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_edittext"
+        />
+
+    <EditText
+        android:id="@+id/etSenha"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:inputType="textPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/etEmail"
+        android:textSize="15sp"
+        android:hint="  Digite sua senha"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_edittext"
+
+        />
+
+
+
+
+
+    <Button
+        android:id="@+id/btnAvancar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:layout_below="@+id/etSenha"
+        android:layout_marginTop="50dp"
+        android:textSize="25sp"
+        android:layout_alignEnd="@id/etSenha"
+        android:backgroundTint="@color/greenbl"
+        android:textColor="@color/white"
+        android:background="@drawable/button_custom"
+        android:textStyle="bold"
+        >
+    </Button>
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:textSize="25sp"
+        android:layout_below="@id/etSenha"
+        android:layout_marginTop="50dp"
+        android:layout_alignStart="@id/etSenha"
+        android:backgroundTint="@color/greenbl"
+        android:textColor="@color/white"
+        android:background="@drawable/button_custom"
+        android:textStyle="bold">
+    </Button>
+
+</RelativeLayout>

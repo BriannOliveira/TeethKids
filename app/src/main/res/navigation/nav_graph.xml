@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/LoginFragment">
+
+    <!--Declarção da atividade-->
+    <activity
+        android:id="@+id/MainActivity"
+        android:name="br.com.minhaempresa.teethkids.MainActivity"/>
+
+    <activity
+        android:id="@+id/MenuActivity"
+        android:name="br.com.minhaempresa.teethkids.MenuActivity"/>
+
+    <!--Declaração dos fragments e as ações-->
+
+    <!-- Fragment do Login -->
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="br.com.minhaempresa.teethkids.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_Login_to_SignUp"
+            app:destination="@id/SignUpFragment"/>
+
+        <action
+            android:id="@+id/action_Login_to_Menu"
+            app:destination="@id/MenuActivity"/>
+
+    </fragment>
+    <!-- Primeiro Fragmento do SignUp -->
+    <fragment
+        android:id="@+id/SignUpFragment"
+        android:name="br.com.minhaempresa.teethkids.SignUpFragment"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_signup">
+
+        <!-- Ação da tela do primeiro Fragment para ir para o segundo Fragment do Login-->
+        <action
+            android:id="@+id/action_SignUp_to_SignUp2"
+            app:destination="@id/SignUpFragment2"/>
+
+        <!-- Ação da tela do primeiro Fragment para voltar para a MainActivity-->
+        <action
+            android:id="@+id/action_SignUp_comeBack"
+            app:destination="@id/MainActivity"/>
+
+        <action
+            android:id="@+id/action_SignUp_to_CameraPreview"
+            app:destination="@id/CameraPreview"/>
+
+    </fragment>
+
+    <!-- Segundo Fragmento -->
+    <fragment
+        android:id="@+id/SignUpFragment2"
+        android:name="br.com.minhaempresa.teethkids.SignUpFragment2"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_signup2">
+
+        <!-- Ação da tela do segundo Fragment para voltar para o primeiro Fragment-->
+        <action
+            android:id="@+id/action_SignUp2_to_SignUp"
+            app:destination="@id/SignUpFragment"/>
+
+        <!-- Ação da tela do segundo Fragment para ir para o terceiro Fragment-->
+        <action
+            android:id="@+id/action_SignUp2_to_SignUp3"
+            app:destination="@id/SignUpFragment3"/>
+    </fragment>
+
+    <!-- Terceiro Fragmento-->
+    <fragment
+        android:id="@+id/SignUpFragment3"
+        android:name="br.com.minhaempresa.teethkids.SignUpFragment3"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_signup3">
+
+        <!-- Ação da tela do terceiro Fragment para voltar para o segundo Fragment-->
+        <action
+            android:id="@+id/action_SignUp3_to_SignUp2"
+            app:destination="@id/SignUpFragment2"/>
+
+        <action
+            android:id="@+id/action_SignUp3_to_LoginFragment"
+            app:destination="@id/LoginFragment"/>
+
+    </fragment>
+
+    <!-- Fragmento da CâmeraPreview -->
+    <fragment
+        android:id="@+id/CameraPreview"
+        android:name="br.com.minhaempresa.teethkids.CameraPreviewFragment"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_preview_camera">
+
+
+    </fragment>
+
+
+</navigation>

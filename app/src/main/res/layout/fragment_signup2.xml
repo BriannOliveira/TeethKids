@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpFragment2">
+
+    <ImageView
+        android:id="@+id/imgNome"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:src="@drawable/itoothnome"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/itooth_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imgNome"
+        />
+
+
+    <TextView
+        android:id="@+id/tvContato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contato:"
+        android:layout_below="@+id/imgLogo"
+        android:layout_alignStart="@+id/etTelefone"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/greenbl"
+        android:layout_marginTop="5dp"
+        />
+
+    <EditText
+        android:id="@+id/etTelefone"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/tvContato"
+        android:layout_centerHorizontal="true"
+        android:inputType="phone"
+        android:hint="  Digite seu telefone"
+        android:textSize="15sp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginTop="10dp"
+        >
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/tvEndereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Endereços:"
+        android:layout_below="@+id/etTelefone"
+        android:layout_alignStart="@+id/etTelefone"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/greenbl"
+        android:layout_marginTop="25dp"
+        />
+
+    <EditText
+        android:id="@+id/etEndereco1"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/tvEndereco"
+        android:layout_alignStart="@id/etTelefone"
+        android:inputType="textPostalAddress"
+        android:textSize="15sp"
+        android:hint="  Digite o primeiro endereço de atendimento"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/etEndereco2"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/etEndereco1"
+        android:layout_alignStart="@id/etTelefone"
+        android:inputType="textPostalAddress"
+        android:textSize="15sp"
+        android:hint="  Digite o segundo endereço de atendimento"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_edittext"
+        />
+
+    <EditText
+        android:id="@+id/etEndereco3"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/etEndereco2"
+        android:layout_alignStart="@id/etTelefone"
+        android:inputType="textPostalAddress"
+        android:textSize="15sp"
+        android:hint="  Digite o terceiro endereço de atendimento"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_edittext"
+        />
+
+    <Button
+        android:id="@+id/btnAvancar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:layout_below="@+id/etEndereco3"
+        android:layout_marginTop="45dp"
+        android:textSize="25sp"
+        android:layout_alignEnd="@id/etTelefone"
+        android:backgroundTint="@color/greenbl"
+        android:textColor="@color/white"
+        android:background="@drawable/button_custom"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:textSize="25sp"
+        android:layout_below="@id/etEndereco3"
+        android:layout_marginTop="45dp"
+        android:layout_alignStart="@id/etTelefone"
+        android:backgroundTint="@color/greenbl"
+        android:textColor="@color/white"
+        android:background="@drawable/button_custom"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

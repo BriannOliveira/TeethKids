@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imgiLogo"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:src="@drawable/itoothnome"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/itooth_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imgiLogo"
+        />
+
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgLogo"
+        android:text="E-mail:"
+        android:layout_alignStart="@+id/tiEmail"
+        android:layout_marginTop="70dp"
+        android:textSize="15dp"
+        android:textColor="@color/greenbl"
+        android:textStyle="bold"
+        >
+    </TextView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiEmail"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEmail"
+        android:layout_centerHorizontal="true"
+        android:hint="  Digite seu e-mail aqui...">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textStyle=""
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tiEmail"
+        android:text="Senha::"
+        android:layout_alignStart="@+id/tiEmail"
+        android:layout_marginTop="20dp"
+        android:textSize="15dp"
+        android:textColor="@color/greenbl"
+        android:textStyle="bold"
+        >
+
+
+    </TextView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Digite sua senha aqui..."
+        android:layout_below="@+id/tvSenha"
+        app:endIconMode="password_toggle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_alignStart="@+id/tiEmail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_edittext"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_below="@+id/tiPassword"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp"
+        android:backgroundTint="@color/greenbl"
+        android:textColor="@color/white"
+        android:background="@drawable/button_custom"
+        android:textStyle="bold">
+
+    </Button>
+
+    <Button
+        android:id="@+id/btnCriarconta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Criar conta"
+        android:layout_below="@+id/btnLogin"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp"
+        android:backgroundTint="@color/greenbl"
+        android:textColor="@color/white"
+        android:background="@drawable/button_custom"
+        android:textStyle="bold">
+    </Button>
+
+
+</RelativeLayout>
