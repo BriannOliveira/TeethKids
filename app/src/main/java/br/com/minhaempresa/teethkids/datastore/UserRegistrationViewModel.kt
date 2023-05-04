@@ -8,20 +8,20 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 data class UserRegistrationUiState(
-    val name: String = "",
+    val  name: String = "",
     val phone: String = "",
     val email: String = "",
     val password: String = "",
     val resume: String = "",
-    val address1: String = "",
-    val address2: String = "",
-    val address3: String = ""
+    val addressone: String = "",
+    val addresstwo: String = "",
+    val addressthree: String = ""
 )
 
 class UserRegistrationViewModel : ViewModel() {
 
     // Expose screen UI state
-    private val _uiState = MutableStateFlow(UserRegistrationUiState())
+    private var _uiState = MutableStateFlow(UserRegistrationUiState())
     val uiState: StateFlow<UserRegistrationUiState> = _uiState.asStateFlow()
 
     // Handle business logic
@@ -55,21 +55,21 @@ class UserRegistrationViewModel : ViewModel() {
         }
     }
 
-    fun updateAddress1(address1: String) {
+    fun updateAddressOne(address: String) {
         _uiState.update { currentState ->
-            currentState.copy(address1 = address1)
+            currentState.copy(addressone = address)
         }
     }
 
-    fun updateAddress2(address2: String) {
+    fun updateAddressTwo(address: String) {
         _uiState.update { currentState ->
-            currentState.copy(address2 = address2)
+            currentState.copy(addresstwo = address)
         }
     }
 
-    fun updateAddress3(address3: String) {
+    fun updateAddressThree(address: String) {
         _uiState.update { currentState ->
-            currentState.copy(address1 = address3)
+            currentState.copy(addressthree = address)
         }
     }
 

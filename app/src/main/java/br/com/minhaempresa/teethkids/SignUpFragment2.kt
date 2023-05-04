@@ -3,6 +3,7 @@ package br.com.minhaempresa.teethkids
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,7 @@ class SignUpFragment2 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val viewModel = (activity as MainActivity).viewModel
 
 
         //Botão para ir para o segundo fragment
@@ -47,9 +49,15 @@ class SignUpFragment2 : Fragment() {
             }else{
                 //Armazenando os dados no viewModel
                 viewModel.updatePhone(binding.etTelefone.text.toString())
-                viewModel.updateAddress1(binding.etEndereco1.text.toString())
-                viewModel.updateAddress2(binding.etEndereco2.text.toString())
-                viewModel.updateAddress3(binding.etEndereco3.text.toString())
+                viewModel.updateAddressOne(binding.etEndereco1.text.toString())
+                viewModel.updateAddressTwo(binding.etEndereco2.text.toString())
+                viewModel.updateAddressThree(binding.etEndereco3.text.toString())
+
+                Log.d("Mensagem", "Telefone: ${viewModel.uiState.value.phone}")
+                Log.d("Mensagem", "Endereço 1: ${viewModel.uiState.value.addressone}")
+                Log.d("Mensagem", "Endereço 2: ${viewModel.uiState.value.addresstwo}")
+                Log.d("Mensagem", "Endereço 3: ${viewModel.uiState.value.addressthree}")
+                Log.d("TAG", "ViewModel hashcode: " + viewModel.hashCode())
 
                 //Próximo fragment
                 findNavController().navigate(R.id.action_SignUp2_to_SignUp3)

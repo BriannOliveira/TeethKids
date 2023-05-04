@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import br.com.minhaempresa.teethkids.databinding.FragmentSignupBinding
@@ -19,10 +20,9 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SignUpFragment : Fragment() {
 
-    private val viewModel: UserRegistrationViewModel by viewModels()
+
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
-    private val auth = FirebaseAuth.getInstance()
     private val cameraProviderResult =
         registerForActivityResult(ActivityResultContracts.RequestPermission()){
             if(it){
@@ -48,12 +48,12 @@ class SignUpFragment : Fragment() {
     //Na tela criada
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val viewModel = (activity as MainActivity).viewModel
 
         //Configuração para a imagem ter função para tirar selfie
         binding.imgUsuario.setOnClickListener(){
             cameraProviderResult.launch(android.Manifest.permission.CAMERA)
         }
-
 
 
         //Botão para ir para o segundo fragmento do login
@@ -63,6 +63,11 @@ class SignUpFragment : Fragment() {
             viewModel.updateName(binding.etNome.text.toString())
             viewModel.updateEmail(binding.etEmail.text.toString())
             viewModel.updatePassword(binding.etSenha.text.toString())
+
+            Log.d("Mensagem", "Nome: ${viewModel.uiState.value.name}")
+            Log.d("Mensagem", "Email: ${viewModel.uiState.value.email}")
+            Log.d("Mensagem", "Senha: ${viewModel.uiState.value.password}")
+            Log.d("TAG", "ViewModel hashcode: " + viewModel.hashCode())
 
             //Declaração de variáveis e transformando o conteúdo das variáveis em String
             val senha = binding.etSenha.text.toString().trim()
@@ -81,15 +86,9 @@ class SignUpFragment : Fragment() {
                 snackbar1.show()
             }
             else{
-                auth.createUserWithEmailAndPassword(email,senha).addOnCompleteListener{cadastro ->
-                    if (cadastro.isSuccessful) {
-                        findNavController().navigate(R.id.action_SignUp_to_SignUp2)
-                    }
-                }.addOnFailureListener{
-
+                findNavController().navigate(R.id.action_SignUp_to_SignUp2)
                 }
             }
-        }
 
         //Botão voltar para a MainActivity
         binding.btnVoltar.setOnClickListener()

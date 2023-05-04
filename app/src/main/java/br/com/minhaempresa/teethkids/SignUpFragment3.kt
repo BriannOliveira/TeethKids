@@ -28,7 +28,6 @@ import org.json.JSONObject
 class SignUpFragment3 : Fragment() {
 
     private val TAG = "SignUpFragment"
-    private val viewModel: UserRegistrationViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
     private lateinit var functions: FirebaseFunctions
     private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
@@ -51,7 +50,7 @@ class SignUpFragment3 : Fragment() {
 
         /** Esse botão termina o ciclo do SignUp e volta para atividade de Login **/
         binding.btnAvancar.setOnClickListener(){
-
+            val viewModel = (activity as MainActivity).viewModel
             //Armazenamento do currículo no viewModel
             viewModel.updateResume(binding.etCurriculo.text.toString())
             viewModel.uiState.value.resume?.let { Value ->
@@ -60,17 +59,26 @@ class SignUpFragment3 : Fragment() {
                     snackbar.setBackgroundTint(Color.RED)
                     snackbar.show()
                 } else {
+                    Log.d("Mensagem", "Nome: ${viewModel.uiState.value.name}")
+                    Log.d("Mensagem", "Email: ${viewModel.uiState.value.email}")
+                    Log.d("Mensagem", "Senha: ${viewModel.uiState.value.password}")
+                    Log.d("Mensagem", "Telefone: ${viewModel.uiState.value.phone}")
+                    Log.d("Mensagem", "Endereço 1: ${viewModel.uiState.value.addressone}")
+                    Log.d("Mensagem", "Endereço 2: ${viewModel.uiState.value.addresstwo}")
+                    Log.d("Mensagem", "Endereço 3: ${viewModel.uiState.value.addressthree}")
+                    Log.d("Mensagem", "Currículo: ${viewModel.uiState.value.resume}")
+                    Log.d("TAG", "ViewModel hashcode: " + viewModel.hashCode())
+
                     //chamar a função de criar a conta...
                     signUpNewAccount(
                         viewModel.uiState.value.name,
                         viewModel.uiState.value.email,
                         viewModel.uiState.value.password,
                         viewModel.uiState.value.phone,
-                        viewModel.uiState.value.address1,
-                        viewModel.uiState.value.address2,
-                        viewModel.uiState.value.address3,
-                        viewModel.uiState.value.resume,
-                        (activity as MainActivity).getFcmToken()
+                        viewModel.uiState.value.addressone,
+                        viewModel.uiState.value.addresstwo,
+                        viewModel.uiState.value.addressthree,
+                        viewModel.uiState.value.resume
                     )
                 }
             }
@@ -111,37 +119,44 @@ class SignUpFragment3 : Fragment() {
         email: String,
         password: String,
         phone: String,
-        address1: String,
-        address2: String,
-        address3: String,
-        resume : String,
-        fcmToken: String
+        addressone: String,
+        addresstwo: String,
+        addressthree: String,
+        resume : String
     ){
         auth = Firebase.auth
 
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(requireActivity()){ task ->
-                if(task.isSuccessful){
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    (activity as MainActivity ).storeUserId(user!!.uid)
-                    //atualizar o perfil do usuário com os dados chamando a function.
-                    updateUserProfile(name, phone, email, resume, address1, address2, address3, user!!.uid, fcmToken)
-                        .addOnCompleteListener(requireActivity()) { res ->
-                            //conta criada com sucesso.
-                            if(res.result.status == "SUCESS"){
-                                hideKeyboard()
-                                Snackbar.make(requireView(), "Conta cadastrada com sucesso! Pode fazer o login", Snackbar.LENGTH_LONG).show()
-                                findNavController().navigate(R.id.action_SignUp3_to_LoginFragment)
-                            }
-                        }
-                } else {
-                    Log.w(TAG, "createUserWithEmail: failure", task.exception)
-                    Toast.makeText(requireActivity(), "Authentication failed", Toast.LENGTH_SHORT).show()
+        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener { cadastro ->
+            Toast.makeText(requireContext(),"Conta autenticada com sucesso!",Toast.LENGTH_SHORT).show()
+            val userMap = hashMapOf(
+                "name" to name,
+                "email" to email,
+                "phone" to phone,
+                "addressone" to addressone,
+                "addresstwo" to addresstwo,
+                "addressthree" to addressthree,
+                "resume" to resume,
+            )
 
-                    //dar seguimento ao tratamento de erro
-                }
+            val db = (activity as MainActivity).db
+            if(FirebaseAuth.getInstance().currentUser!=null){
+                val userId = FirebaseAuth.getInstance().currentUser!!.uid
+                db.collection("user").document(userId).set(userMap)
+                    .addOnSuccessListener {
+                        Toast.makeText(requireContext(),"Conta cadastrada com sucesso!", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_SignUp3_to_LoginFragment)
+                    }
+                    .addOnFailureListener{
+                        Toast.makeText(requireContext(), "Falha ao cadastrar sua conta! Tente novamente.", Toast.LENGTH_SHORT).show()
+                    }
+            }else{
+                Toast.makeText(requireContext(), "Current user is null", Toast.LENGTH_SHORT).show()
             }
+        }.addOnFailureListener{
+            Toast.makeText(requireContext(), "Falha ao fazer a autenticação! Tente novamente.", Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 
     private fun updateUserProfile(
@@ -152,8 +167,7 @@ class SignUpFragment3 : Fragment() {
         address1: String,
         address2: String,
         address3: String,
-        uid: String,
-        fcmToken: String
+        uid: String
     ) : Task<CustomResponse> {
         //chamar a functions para atualizar o perfil
         functions = Firebase.functions("southamerica-east1")
@@ -168,7 +182,6 @@ class SignUpFragment3 : Fragment() {
             "endereço 2" to address2,
             "endereço 3" to address3,
             "uid" to uid,
-            "fcmToken" to fcmToken
         )
 
         return functions

@@ -4,15 +4,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Button
+import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import br.com.minhaempresa.teethkids.databinding.ActivityMainBinding
 import br.com.minhaempresa.teethkids.databinding.ActivityMenuBinding
 import br.com.minhaempresa.teethkids.datastore.UserPreferencesRepository
+import br.com.minhaempresa.teethkids.datastore.UserRegistrationViewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.appcheck.FirebaseAppCheck
 import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
 
@@ -21,10 +24,11 @@ class MainActivity : AppCompatActivity() {
 
     /** Essa atividade pode ser a do Login, renomear o nome para LoginActivity**/
     private lateinit var userPreferencesRepository: UserPreferencesRepository
-    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
+    val db = FirebaseFirestore.getInstance()
+    val viewModel: UserRegistrationViewModel by viewModels()
 
-    private fun prepareFirebsaeAppCheckDebug(){
+    private fun prepareFirebaseAppCheckDebug(){
         FirebaseApp.initializeApp(this)
         val firebaseAppCheck = FirebaseAppCheck.getInstance()
         firebaseAppCheck.installAppCheckProviderFactory(
@@ -61,10 +65,12 @@ class MainActivity : AppCompatActivity() {
 
         navController.navigate(R.id.nav_graph)
 
+        FirebaseApp.initializeApp(this)
+
         userPreferencesRepository = UserPreferencesRepository.getInstance(this)
 
         // disponibilizando o token (que deve ser colocado lá no APP CHECK do Firebase).
-        prepareFirebsaeAppCheckDebug()
+
 
         // guardar o token FCM pois iremos precisar.
         storeFcmToken()

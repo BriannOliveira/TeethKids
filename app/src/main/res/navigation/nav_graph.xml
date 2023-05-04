@@ -47,7 +47,7 @@
         <!-- Ação da tela do primeiro Fragment para voltar para a MainActivity-->
         <action
             android:id="@+id/action_SignUp_comeBack"
-            app:destination="@id/MainActivity"/>
+            app:destination="@id/LoginFragment"/>
 
         <action
             android:id="@+id/action_SignUp_to_CameraPreview"
