@@ -21,9 +21,6 @@
             android:label="@string/title_activity_menu"
             android:theme="@style/Theme.TeethKids.NoActionBar" />
         <activity
-            android:name=".CriarConta"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
