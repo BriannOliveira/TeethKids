@@ -23,5 +23,16 @@ class DetailEmergencyFragment : Fragment() {
         return(binding.root)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //Pegar os dados do item selecionado na RecyclerView e setar eles aqui...
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
 }

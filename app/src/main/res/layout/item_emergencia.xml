@@ -12,23 +12,34 @@
         android:layout_margin="5dp"
         app:cardCornerRadius="10dp"
         android:clickable="true"
-        app:cardElevation="7dp">
+        android:focusable="true"
+        app:cardElevation="7dp"
+        app:cardBackgroundColor="@color/white">
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
 
+        <ImageView
+            android:id="@+id/item_emergencia_foto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/avatar"/>
+
         <TextView
             android:id="@+id/item_emergencia_titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:maxLines="2"
-            android:textSize="30sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:text="Título"/>
+            android:text="Título"
+            android:textColor="@color/darkred"
+            android:layout_toEndOf="@id/item_emergencia_foto"/>
 
         <TextView
             android:id="@+id/item_emergencia_descricao"
@@ -38,11 +49,14 @@
             android:layout_marginTop="0dp"
             android:layout_marginBottom="8dp"
             android:maxLines="6"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:text="Descrição"
+            android:textColor="@color/darkred"
+            android:layout_toEndOf="@id/item_emergencia_foto"
+            android:layout_below="@+id/item_emergencia_titulo"
             />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </androidx.cardview.widget.CardView>

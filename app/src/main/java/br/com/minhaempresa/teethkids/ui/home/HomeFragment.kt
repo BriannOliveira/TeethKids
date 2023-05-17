@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentHomeBinding
@@ -16,7 +17,7 @@ import br.com.minhaempresa.teethkids.ui.recyclerViewHome.EmergencyAdapter
 import br.com.minhaempresa.teethkids.ui.recyclerViewHome.EmergencyClickListener
 import br.com.minhaempresa.teethkids.ui.recyclerViewHome.emergencyList
 
-class HomeFragment : Fragment(), EmergencyClickListener {
+class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -44,9 +45,17 @@ class HomeFragment : Fragment(), EmergencyClickListener {
 
     }
 
+    override fun onItemClick(position: Int) {
+        //Implementar aqui a codificação para o Fragment do DetailEmergency correspondente ao elemento que clicou
+        findNavController().navigate(R.id.action_HomeFragment_to_DetailEmergencyFragment)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnMenu.setOnClickListener{
+            findNavController().navigate(R.id.action_HomeFragment_to_FragmentMenu)
+        }
 
     }
 
@@ -65,13 +74,19 @@ class HomeFragment : Fragment(), EmergencyClickListener {
 
         val emerg2 = Emergency(
             R.drawable.avatar,
-            "Vasco",
+            "Fernando Gomes",
             "(19)99784-9876"
         )
         emergencyList.add(emerg2)
+
+        val emerg3 = Emergency(
+            R.drawable.avatar,
+        "Gabriela Souza",
+        "(19)99387-3987"
+        )
+        emergencyList.add(emerg3)
     }
 
-    override fun onCLick(emergency: Emergency) {
-        //Implementar aqui a codificação para o Fragment do DetailEmergency correspondente ao elemento que clicou
-    }
+
+
 }

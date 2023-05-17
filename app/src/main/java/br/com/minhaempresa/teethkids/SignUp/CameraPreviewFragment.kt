@@ -1,6 +1,5 @@
-package br.com.minhaempresa.teethkids
+package br.com.minhaempresa.teethkids.SignUp
 
-import android.media.Image
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log

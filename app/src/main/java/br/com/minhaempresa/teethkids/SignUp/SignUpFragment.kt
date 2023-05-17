@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids
+package br.com.minhaempresa.teethkids.SignUp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,11 +11,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.viewModels
+import br.com.minhaempresa.teethkids.MainActivity
+import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignupBinding
-import br.com.minhaempresa.teethkids.datastore.UserRegistrationViewModel
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
 
 
 class SignUpFragment : Fragment() {

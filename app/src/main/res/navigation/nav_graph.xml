@@ -35,7 +35,7 @@
     <!-- Primeiro Fragmento do SignUp -->
     <fragment
         android:id="@+id/SignUpFragment"
-        android:name="br.com.minhaempresa.teethkids.SignUpFragment"
+        android:name="br.com.minhaempresa.teethkids.SignUp.SignUpFragment"
         android:label="SignUp"
         tools:layout="@layout/fragment_signup">
 
@@ -58,7 +58,7 @@
     <!-- Segundo Fragmento -->
     <fragment
         android:id="@+id/SignUpFragment2"
-        android:name="br.com.minhaempresa.teethkids.SignUpFragment2"
+        android:name="br.com.minhaempresa.teethkids.SignUp.SignUpFragment2"
         android:label="SignUp"
         tools:layout="@layout/fragment_signup2">
 
@@ -76,7 +76,7 @@
     <!-- Terceiro Fragmento-->
     <fragment
         android:id="@+id/SignUpFragment3"
-        android:name="br.com.minhaempresa.teethkids.SignUpFragment3"
+        android:name="br.com.minhaempresa.teethkids.SignUp.SignUpFragment3"
         android:label="SignUp"
         tools:layout="@layout/fragment_signup3">
 
@@ -94,7 +94,7 @@
     <!-- Fragmento da CâmeraPreview -->
     <fragment
         android:id="@+id/CameraPreview"
-        android:name="br.com.minhaempresa.teethkids.CameraPreviewFragment"
+        android:name="br.com.minhaempresa.teethkids.SignUp.CameraPreviewFragment"
         android:label="SignUp"
         tools:layout="@layout/fragment_preview_camera">
 
@@ -110,6 +110,10 @@
             android:id="@+id/action_HomeFragment_to_DetailEmergencyFragment"
             app:destination="@+id/DetailEmergencyFragment"/>
 
+        <action
+            android:id="@+id/action_HomeFragment_to_FragmentMenu"
+            app:destination="@+id/MenuFragment"/>
+
     </fragment>
 
     <fragment
@@ -117,6 +121,14 @@
         android:name="br.com.minhaempresa.teethkids.ui.recyclerViewHome.DetailEmergencyFragment"
         android:label="Details"
         tools:layout="@layout/fragment_detail_emergency">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/MenuFragment"
+        android:name="br.com.minhaempresa.teethkids.MenuFragment"
+        android:label="Menu"
+        tools:layout="@layout/fragment_menu">
 
     </fragment>
 
