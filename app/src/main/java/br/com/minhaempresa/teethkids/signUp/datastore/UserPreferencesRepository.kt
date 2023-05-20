@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids.datastore
+package br.com.minhaempresa.teethkids.signUp.datastore
 
 import android.content.Context
 import androidx.core.content.edit

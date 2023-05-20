@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids.SignUp
+package br.com.minhaempresa.teethkids.signUp
 
 import android.os.Bundle
 import android.os.Environment

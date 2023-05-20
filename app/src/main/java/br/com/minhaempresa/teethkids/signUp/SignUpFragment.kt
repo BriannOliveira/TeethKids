@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids.SignUp
+package br.com.minhaempresa.teethkids.signUp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
-import br.com.minhaempresa.teethkids.MainActivity
+import br.com.minhaempresa.teethkids.login.MainActivity
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignupBinding
 import com.google.android.material.snackbar.Snackbar

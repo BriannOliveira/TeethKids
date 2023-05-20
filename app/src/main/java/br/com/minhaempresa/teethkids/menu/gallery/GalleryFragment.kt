@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids.ui.gallery
+package br.com.minhaempresa.teethkids.menu.gallery
 
 import android.os.Bundle
 import android.view.LayoutInflater

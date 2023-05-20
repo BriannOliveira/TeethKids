@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids
+package br.com.minhaempresa.teethkids.login
 
 import android.content.Context
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth

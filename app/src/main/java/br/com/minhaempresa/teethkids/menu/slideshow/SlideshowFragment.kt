@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids.ui.slideshow
+package br.com.minhaempresa.teethkids.menu.slideshow
 
 import android.os.Bundle
 import android.view.LayoutInflater

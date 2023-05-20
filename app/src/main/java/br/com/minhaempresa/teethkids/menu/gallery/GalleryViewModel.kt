@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids.ui.gallery
+package br.com.minhaempresa.teethkids.menu.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,20 +1,17 @@
-package br.com.minhaempresa.teethkids
+package br.com.minhaempresa.teethkids.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.content.Intent
-import android.widget.Button
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
+import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.ActivityMainBinding
-import br.com.minhaempresa.teethkids.databinding.ActivityMenuBinding
-import br.com.minhaempresa.teethkids.datastore.UserPreferencesRepository
-import br.com.minhaempresa.teethkids.datastore.UserRegistrationViewModel
+import br.com.minhaempresa.teethkids.signUp.datastore.UserPreferencesRepository
+import br.com.minhaempresa.teethkids.signUp.model.UserRegistrationViewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.appcheck.FirebaseAppCheck
 import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging

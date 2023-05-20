@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids.datastore
+package br.com.minhaempresa.teethkids.signUp.model
 
 
 import androidx.lifecycle.ViewModel

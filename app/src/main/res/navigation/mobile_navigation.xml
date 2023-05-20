@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="br.com.minhaempresa.teethkids.ui.home.HomeFragment"
+        android:name="br.com.minhaempresa.teethkids.menu.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="br.com.minhaempresa.teethkids.ui.gallery.GalleryFragment"
+        android:name="br.com.minhaempresa.teethkids.menu.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="br.com.minhaempresa.teethkids.ui.slideshow.SlideshowFragment"
+        android:name="br.com.minhaempresa.teethkids.menu.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

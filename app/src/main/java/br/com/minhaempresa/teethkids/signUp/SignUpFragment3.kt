@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids.SignUp
+package br.com.minhaempresa.teethkids.signUp
 
 import android.content.Context
 import android.graphics.Color
@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import br.com.minhaempresa.teethkids.CustomResponse
-import br.com.minhaempresa.teethkids.MainActivity
+import br.com.minhaempresa.teethkids.signUp.model.CustomResponse
+import br.com.minhaempresa.teethkids.login.MainActivity
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignup3Binding
 import com.google.firebase.auth.FirebaseAuth

@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids.SignUp
+package br.com.minhaempresa.teethkids.signUp
 
 
 import android.graphics.Color
@@ -10,10 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import br.com.minhaempresa.teethkids.MainActivity
+import br.com.minhaempresa.teethkids.login.MainActivity
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignup2Binding
-import br.com.minhaempresa.teethkids.datastore.UserRegistrationViewModel
+import br.com.minhaempresa.teethkids.signUp.model.UserRegistrationViewModel
 import com.google.android.material.snackbar.Snackbar
 
 

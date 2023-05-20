@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".menu.home.HomeFragment">
 
     <TextView
         android:id="@+id/tvWelcome"
@@ -49,22 +49,26 @@
                 android:layout_height="wrap_content"
                 android:text="Seu Status:"
                 android:textStyle="bold"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textColor="@color/greenbl"
-                android:layout_margin="30dp"/>
+                android:layout_margin="20dp"/>
 
             <!-- Criar cor para o botão switch ligado e desligado-->
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/sStatus"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignBottom="@id/tvStatus"
-                android:layout_marginStart="40dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginEnd="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_toEndOf="@id/tvStatus"
                 app:thumbTint="@color/greenbl"
-                app:trackTint="@color/lightgreen"/>
+                app:trackTint="@color/switch_track_color"
+                android:checked="false"
+                android:textOn="On"
+                android:textOff="Off"/>
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -77,31 +81,45 @@
         android:textStyle="bold"
         android:textColor="@color/darkred"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/cvStatus"
         />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvRvEmergencias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvEmergencias"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="0dp"
+        app:cardCornerRadius="10dp"
+        android:elevation="7dp"
+        android:backgroundTint="@color/whitetheme">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEmergencias"
         android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvEmergencias"
-        android:layout_alignStart="@+id/tvEmergencias"
-        android:layout_marginTop="15dp"/>
+        android:layout_height="390dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    </androidx.cardview.widget.CardView>
+
+    <!--<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Minha reputação"
         android:textAppearance="@style/TextAppearance.Material3.ActionBar.Title"
         android:textAlignment="center"
-        android:layout_below="@id/rvEmergencias"
+        android:layout_below="@id/cvRvEmergencias"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="@color/lightgreen"
         android:backgroundTint="@color/white"
-        style="@style/ExtendedFabStyle"/>
+        style="@style/ExtendedFabStyle"/>-->
 </RelativeLayout>

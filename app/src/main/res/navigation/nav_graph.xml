@@ -8,18 +8,18 @@
     <!--Declarção da atividade-->
     <activity
         android:id="@+id/MainActivity"
-        android:name="br.com.minhaempresa.teethkids.MainActivity"/>
+        android:name="br.com.minhaempresa.teethkids.login.MainActivity"/>
 
     <activity
         android:id="@+id/MenuActivity"
-        android:name="br.com.minhaempresa.teethkids.MenuActivity"/>
+        android:name="br.com.minhaempresa.teethkids.menu.MenuActivity"/>
 
     <!--Declaração dos fragments e as ações-->
 
     <!-- Fragment do Login -->
     <fragment
         android:id="@+id/LoginFragment"
-        android:name="br.com.minhaempresa.teethkids.LoginFragment"
+        android:name="br.com.minhaempresa.teethkids.login.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login">
 
@@ -35,7 +35,7 @@
     <!-- Primeiro Fragmento do SignUp -->
     <fragment
         android:id="@+id/SignUpFragment"
-        android:name="br.com.minhaempresa.teethkids.SignUp.SignUpFragment"
+        android:name="br.com.minhaempresa.teethkids.signUp.SignUpFragment"
         android:label="SignUp"
         tools:layout="@layout/fragment_signup">
 
@@ -58,7 +58,7 @@
     <!-- Segundo Fragmento -->
     <fragment
         android:id="@+id/SignUpFragment2"
-        android:name="br.com.minhaempresa.teethkids.SignUp.SignUpFragment2"
+        android:name="br.com.minhaempresa.teethkids.signUp.SignUpFragment2"
         android:label="SignUp"
         tools:layout="@layout/fragment_signup2">
 
@@ -76,7 +76,7 @@
     <!-- Terceiro Fragmento-->
     <fragment
         android:id="@+id/SignUpFragment3"
-        android:name="br.com.minhaempresa.teethkids.SignUp.SignUpFragment3"
+        android:name="br.com.minhaempresa.teethkids.signUp.SignUpFragment3"
         android:label="SignUp"
         tools:layout="@layout/fragment_signup3">
 
@@ -94,7 +94,7 @@
     <!-- Fragmento da CâmeraPreview -->
     <fragment
         android:id="@+id/CameraPreview"
-        android:name="br.com.minhaempresa.teethkids.SignUp.CameraPreviewFragment"
+        android:name="br.com.minhaempresa.teethkids.signUp.CameraPreviewFragment"
         android:label="SignUp"
         tools:layout="@layout/fragment_preview_camera">
 
@@ -102,7 +102,7 @@
 
     <fragment
         android:id="@+id/HomeFragment"
-        android:name="br.com.minhaempresa.teethkids.ui.home.HomeFragment"
+        android:name="br.com.minhaempresa.teethkids.menu.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
 
@@ -118,7 +118,7 @@
 
     <fragment
         android:id="@+id/DetailEmergencyFragment"
-        android:name="br.com.minhaempresa.teethkids.ui.recyclerViewHome.DetailEmergencyFragment"
+        android:name="br.com.minhaempresa.teethkids.menu.recyclerViewHome.DetailEmergencyFragment"
         android:label="Details"
         tools:layout="@layout/fragment_detail_emergency">
 
@@ -126,7 +126,7 @@
 
     <fragment
         android:id="@+id/MenuFragment"
-        android:name="br.com.minhaempresa.teethkids.MenuFragment"
+        android:name="br.com.minhaempresa.teethkids.menu.MenuFragment"
         android:label="Menu"
         tools:layout="@layout/fragment_menu">
 

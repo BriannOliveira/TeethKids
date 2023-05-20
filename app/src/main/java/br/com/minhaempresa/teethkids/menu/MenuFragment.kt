@@ -1,10 +1,11 @@
-package br.com.minhaempresa.teethkids
+package br.com.minhaempresa.teethkids.menu
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import br.com.minhaempresa.teethkids.R
 
 
 class MenuFragment : Fragment() {
