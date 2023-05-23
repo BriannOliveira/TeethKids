@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.NotificationsDisabledFragment">
+    tools:context=".menu.NotificationsDisabledFragment"
+    android:id="@+id/notification_disabled_fragment">
 
     <ImageView
         android:layout_width="180dp"

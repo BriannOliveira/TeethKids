@@ -6,12 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".signUp.SignUpFragment2">
 
-    <ImageView
-        android:id="@+id/imgNome"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:src="@drawable/itoothnome"
-        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="iTooth"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/alphakind"
+        android:textSize="45sp"
+        android:textColor="@color/greenbl"
+        />
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -19,7 +24,8 @@
         android:layout_height="150dp"
         android:src="@drawable/itooth_logo"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/imgNome"
+        android:layout_below="@+id/tvTitulo"
+        android:layout_marginTop="20dp"
         />
 
 

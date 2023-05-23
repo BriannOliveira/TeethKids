@@ -1,5 +1,6 @@
 package br.com.minhaempresa.teethkids.signUp
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignup3Binding
 import br.com.minhaempresa.teethkids.login.MainActivity
+import br.com.minhaempresa.teethkids.menu.MenuActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

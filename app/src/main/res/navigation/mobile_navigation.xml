@@ -22,4 +22,5 @@
         android:name="br.com.minhaempresa.teethkids.menu.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
 </navigation>

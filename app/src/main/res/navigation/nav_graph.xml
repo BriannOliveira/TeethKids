@@ -110,10 +110,6 @@
             android:id="@+id/action_HomeFragment_to_DetailEmergencyFragment"
             app:destination="@+id/DetailEmergencyFragment"/>
 
-        <action
-            android:id="@+id/action_HomeFragment_to_FragmentMenu"
-            app:destination="@+id/MenuFragment"/>
-
     </fragment>
 
     <fragment
@@ -124,13 +120,6 @@
 
     </fragment>
 
-    <fragment
-        android:id="@+id/MenuFragment"
-        android:name="br.com.minhaempresa.teethkids.menu.MenuFragment"
-        android:label="Menu"
-        tools:layout="@layout/fragment_menu">
-
-    </fragment>
 
 
 </navigation>

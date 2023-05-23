@@ -1,6 +1,7 @@
 package br.com.minhaempresa.teethkids.login
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentLoginBinding
+import br.com.minhaempresa.teethkids.menu.MenuActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
@@ -64,7 +66,9 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     // login completado com sucesso.
-                    findNavController().navigate(R.id.action_Login_to_Menu)
+                    val intent = Intent(requireContext(), MenuActivity::class.java)
+                    startActivity(intent)
+                    (activity as MainActivity).finish()
                 } else {
                     if (it.exception is FirebaseAuthException) {
                         Snackbar.make(requireView(),"Não foi possível fazer o login, verifique os dados e tente novamente.", Snackbar.LENGTH_LONG).show()

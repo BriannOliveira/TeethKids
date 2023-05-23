@@ -24,8 +24,8 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private var _binding: ActivityMenuBinding? = null
     private val binding get() = _binding!!
-    private lateinit var notificationsdisabledfragment: NotificationsDisabledFragment
-    private lateinit var homeFragment: HomeFragment
+    private lateinit var menuFragment: MenuFragment
+    private lateinit var notificationsfragment: NotificationsDisabledFragment
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -33,13 +33,13 @@ class MenuActivity : AppCompatActivity() {
         if (!isGranted){
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.drawer_layout, homeFragment)
+            fragmentTransaction.replace(R.id.container_menu, notificationsfragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         } else {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.drawer_layout, notificationsdisabledfragment)
+            fragmentTransaction.replace(R.id.container_menu, menuFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
@@ -69,20 +69,15 @@ class MenuActivity : AppCompatActivity() {
         _binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarMenu.toolbar)
 
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_menu)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-            ), drawerLayout
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+
+        notificationsfragment = NotificationsDisabledFragment()
+        menuFragment = MenuFragment()
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.container_menu, notificationsfragment)
+        fragmentTransaction.commit()
+
 
         //perguntar pela permissão de notificação
         askNotificationPermission();
