@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         userPreferencesRepository = UserPreferencesRepository.getInstance(this)
 
         // disponibilizando o token (que deve ser colocado lá no APP CHECK do Firebase).
-
+        prepareFirebaseAppCheckDebug()
 
         // guardar o token FCM pois iremos precisar.
         storeFcmToken()

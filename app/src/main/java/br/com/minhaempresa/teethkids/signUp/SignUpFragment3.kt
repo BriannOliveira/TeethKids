@@ -1,37 +1,27 @@
 package br.com.minhaempresa.teethkids.signUp
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import br.com.minhaempresa.teethkids.signUp.model.CustomResponse
-import br.com.minhaempresa.teethkids.login.MainActivity
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignup3Binding
+import br.com.minhaempresa.teethkids.login.MainActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.ktx.Firebase
-import com.google.gson.GsonBuilder
-import com.google.android.gms.tasks.Task
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.functions.ktx.functions
 import org.json.JSONArray
 import org.json.JSONObject
 
 class SignUpFragment3 : Fragment() {
 
-    private val TAG = "SignUpFragment"
     private lateinit var auth: FirebaseAuth
-    private lateinit var functions: FirebaseFunctions
-    private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
 
     private var _binding: FragmentSignup3Binding? = null
     private val binding get() = _binding!!
@@ -79,7 +69,8 @@ class SignUpFragment3 : Fragment() {
                         viewModel.uiState.value.addressone,
                         viewModel.uiState.value.addresstwo,
                         viewModel.uiState.value.addressthree,
-                        viewModel.uiState.value.resume
+                        viewModel.uiState.value.resume,
+                        (activity as MainActivity).getFcmToken()
                     )
                 }
             }
@@ -110,10 +101,6 @@ class SignUpFragment3 : Fragment() {
         }
     }
 
-    private fun hideKeyboard(){
-        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
-    }
 
     private fun signUpNewAccount(
         name: String,
@@ -123,7 +110,8 @@ class SignUpFragment3 : Fragment() {
         addressone: String,
         addresstwo: String,
         addressthree: String,
-        resume : String
+        resume : String,
+        fcmToken: String
     ){
         auth = Firebase.auth
 
@@ -137,6 +125,7 @@ class SignUpFragment3 : Fragment() {
                 "addresstwo" to addresstwo,
                 "addressthree" to addressthree,
                 "resume" to resume,
+                "fcmToken" to fcmToken
             )
 
             val db = (activity as MainActivity).db
@@ -156,41 +145,5 @@ class SignUpFragment3 : Fragment() {
         }.addOnFailureListener{
             Toast.makeText(requireContext(), "Falha ao fazer a autenticação! Tente novamente.", Toast.LENGTH_SHORT).show()
         }
-
-
-    }
-
-    private fun updateUserProfile(
-        name: String,
-        phone: String,
-        email: String,
-        resume: String,
-        address1: String,
-        address2: String,
-        address3: String,
-        uid: String
-    ) : Task<CustomResponse> {
-        //chamar a functions para atualizar o perfil
-        functions = Firebase.functions("southamerica-east1")
-
-        //Create the arguments to the callable function
-        val data = hashMapOf(
-            "nome" to name,
-            "telefone" to phone,
-            "email" to email,
-            "currículo" to resume,
-            "endereço 1" to address1,
-            "endereço 2" to address2,
-            "endereço 3" to address3,
-            "uid" to uid,
-        )
-
-        return functions
-            .getHttpsCallable("setUserProfile")
-            .call(data)
-            .continueWith { task ->
-                val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
-                result
-            }
     }
 }

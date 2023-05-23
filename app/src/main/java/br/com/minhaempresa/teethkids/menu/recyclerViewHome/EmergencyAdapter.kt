@@ -9,13 +9,9 @@ import br.com.minhaempresa.teethkids.databinding.ItemEmergenciaBinding
 //classe do Adapter
 class EmergencyAdapter(
     private val emergencies: List<Emergency>,
-    private val listener: RecyclerViewEvent,
-    emergencylistener: EmergencyDetail
+    private val listener: RecyclerViewEvent
     ) : RecyclerView.Adapter<EmergencyAdapter.EmergencyViewHolder>()
 {
-
-    var emlistener : EmergencyDetail = emergencylistener
-    var onButtonClick: ((Emergency) -> Unit)? = null
 
     //classe do ViewHolder
     inner class EmergencyViewHolder(
@@ -38,7 +34,6 @@ class EmergencyAdapter(
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION){
                 listener.onItemClick(position)
-                emlistener.onDetailEmergency(emergencies.get(position))
             }
         }
     }

@@ -12,7 +12,7 @@
 
     <activity
         android:id="@+id/MenuActivity"
-        android:name="br.com.minhaempresa.teethkids.menu.MenuActivity"/>
+        android:name="br.com.minhaempresa.teethkids.menu.MenuActivity" />
 
     <!--Declaração dos fragments e as ações-->
 

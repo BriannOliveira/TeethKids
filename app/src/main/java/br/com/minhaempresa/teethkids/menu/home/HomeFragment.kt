@@ -6,24 +6,34 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentHomeBinding
 import br.com.minhaempresa.teethkids.login.MainActivity
-import br.com.minhaempresa.teethkids.menu.MenuActivity
+import br.com.minhaempresa.teethkids.menu.recyclerViewHome.DetailEmergencyFragment
 import br.com.minhaempresa.teethkids.menu.recyclerViewHome.Emergency
 import br.com.minhaempresa.teethkids.menu.recyclerViewHome.EmergencyAdapter
 import br.com.minhaempresa.teethkids.menu.recyclerViewHome.emergencyList
+import br.com.minhaempresa.teethkids.menu.recyclerViewHome.FindEmergenciesResult
+import br.com.minhaempresa.teethkids.signUp.model.CustomResponse
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.ktx.functions
+import com.google.firebase.ktx.Firebase
+import com.google.gson.GsonBuilder
 
 class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var status: Boolean = false
+    private lateinit var detailfragment : DetailEmergencyFragment
+    private lateinit var functions : FirebaseFunctions
+    private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,14 +46,16 @@ class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         //função para buscar dados no Firestore para a recyclerView
-        buscarDados()
+        //emergencyList = findEmergencies(emergencyList).result.payload as MutableList<Emergency>
 
-        var recyclerView: RecyclerView = binding.rvEmergencias
+        dadosTeste();
+
+        val recyclerView: RecyclerView = binding.rvEmergencias
 
         //Configurando o RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = EmergencyAdapter(emergencyList, this, this.activity as MenuActivity)
+        recyclerView.adapter = EmergencyAdapter(emergencyList, this)
 
 
 
@@ -52,9 +64,12 @@ class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
 
     override fun onItemClick(position: Int) {
         val emergency = emergencyList[position]
-
         //passar para o próximo fragment
 
+        val transaction : FragmentTransaction = childFragmentManager.beginTransaction()
+        transaction.replace(R.id.drawer_layout,detailfragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,7 +78,7 @@ class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
 
         binding.sStatus.setOnCheckedChangeListener{buttonView, isChecked ->
             val newField : MutableMap<String, Any> = HashMap<String, Any>().apply {
-                put("status", status!!)
+                put("status", status)
             }
             val db = (activity as MainActivity).db
             val userId = FirebaseAuth.getInstance().currentUser!!.uid
@@ -74,10 +89,10 @@ class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
                     .document(userId)
                     .update(newField)
                     .addOnSuccessListener {
-                        Toast.makeText(requireContext(),"Status On!",Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(),"Status On!",Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener{
-                        Toast.makeText(requireContext(),"Não foi possível ativar seu status.", Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(),"Não foi possível ativar seu status.", Toast.LENGTH_SHORT).show()
                     }
             } else {
                 status = false
@@ -86,10 +101,10 @@ class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
                     .document(userId)
                     .update(newField)
                     .addOnSuccessListener{
-                        Toast.makeText(requireContext(), "Status Off!",Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(), "Status Off!",Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener{
-                        Toast.makeText(requireContext(), "Status On!", Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(), "Status On!", Toast.LENGTH_SHORT).show()
                     }
             }
         }
@@ -105,10 +120,23 @@ class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
         _binding = null
     }
 
-    private fun buscarDados(){
+    private fun findEmergencies(emergencyList: MutableList<Emergency>): Task<CustomResponse>{
 
-        //função para buscar dados no banco de dados
+        // scheduler ; timer runnable
+        functions = Firebase.functions("southamerica-east1")
+        val result : FindEmergenciesResult
+        return functions
+            .getHttpsCallable("findEmergencies")
+            .call(emergencyList)
+            .continueWith { task ->
 
+                val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
+                result
+            }
+    }
+
+    private fun dadosTeste(){
+        //função só para preencher a recyclerview por enquanto
         val emerg1 = Emergency(
             R.drawable.avatar,
             "Briann Oliveira",
@@ -141,7 +169,5 @@ class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
         )
         emergencyList.add(emerg4)
     }
-
-
 }
 
