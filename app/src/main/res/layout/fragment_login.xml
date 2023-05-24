@@ -13,22 +13,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="iTooth"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
         android:fontFamily="@font/alphakind"
-        android:textSize="45sp"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp"
         android:textColor="@color/greenbl"
+        android:layout_marginTop="50dp"
         />
 
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:src="@drawable/itooth_logo"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tvTitulo"
-        android:layout_marginTop="20dp"
         />
 
 
@@ -39,7 +38,7 @@
         android:layout_below="@+id/imgLogo"
         android:text="E-mail:"
         android:layout_alignStart="@+id/tiEmail"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:textSize="15dp"
         android:textColor="@color/greenbl"
         android:textStyle="bold"
@@ -113,7 +112,7 @@
         android:layout_below="@+id/tiPassword"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:backgroundTint="@color/greenbl"
         android:textColor="@color/white"
         android:background="@drawable/button_custom"
@@ -129,7 +128,7 @@
         android:layout_below="@+id/btnLogin"
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:backgroundTint="@color/greenbl"
         android:textColor="@color/white"
         android:background="@drawable/button_custom"

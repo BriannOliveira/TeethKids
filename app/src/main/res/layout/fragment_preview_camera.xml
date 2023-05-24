@@ -13,22 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:src="@drawable/itoothnome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnTirarfoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tirar foto"
         android:backgroundTint="@color/greenbl"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:layout_marginBottom="75dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

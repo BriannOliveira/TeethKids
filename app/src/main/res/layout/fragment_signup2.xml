@@ -12,20 +12,19 @@
         android:layout_height="wrap_content"
         android:text="iTooth"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
         android:fontFamily="@font/alphakind"
-        android:textSize="45sp"
+        android:textSize="25sp"
         android:textColor="@color/greenbl"
+        android:layout_marginTop="50dp"
         />
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:src="@drawable/itooth_logo"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tvTitulo"
-        android:layout_marginTop="20dp"
         />
 
 
@@ -39,7 +38,6 @@
         android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@color/greenbl"
-        android:layout_marginTop="5dp"
         />
 
     <EditText
@@ -49,7 +47,7 @@
         android:layout_below="@id/tvContato"
         android:layout_centerHorizontal="true"
         android:inputType="phone"
-        android:hint="  Digite seu telefone"
+        android:hint="Digite seu telefone"
         android:textSize="15sp"
         android:background="@drawable/rounded_edittext"
         android:layout_marginTop="10dp"
@@ -78,7 +76,7 @@
         android:layout_alignStart="@id/etTelefone"
         android:inputType="textPostalAddress"
         android:textSize="15sp"
-        android:hint="  Digite o primeiro endereço de atendimento"
+        android:hint="Digite o primeiro endereço de atendimento"
         android:background="@drawable/rounded_edittext"
         android:layout_marginTop="10dp"
         />
@@ -91,7 +89,7 @@
         android:layout_alignStart="@id/etTelefone"
         android:inputType="textPostalAddress"
         android:textSize="15sp"
-        android:hint="  Digite o segundo endereço de atendimento"
+        android:hint="Digite o segundo endereço de atendimento"
         android:layout_marginTop="25dp"
         android:background="@drawable/rounded_edittext"
         />
@@ -104,7 +102,7 @@
         android:layout_alignStart="@id/etTelefone"
         android:inputType="textPostalAddress"
         android:textSize="15sp"
-        android:hint="  Digite o terceiro endereço de atendimento"
+        android:hint="Digite o terceiro endereço de atendimento"
         android:layout_marginTop="25dp"
         android:background="@drawable/rounded_edittext"
         />
@@ -116,7 +114,7 @@
         android:text="Enviar"
         android:layout_below="@+id/etEndereco3"
         android:layout_marginTop="45dp"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:layout_alignEnd="@id/etTelefone"
         android:backgroundTint="@color/greenbl"
         android:textColor="@color/white"
@@ -128,7 +126,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Voltar"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:layout_below="@id/etEndereco3"
         android:layout_marginTop="45dp"
         android:layout_alignStart="@id/etTelefone"
