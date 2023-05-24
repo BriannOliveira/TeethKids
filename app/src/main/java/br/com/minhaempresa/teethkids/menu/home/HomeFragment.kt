@@ -31,8 +31,8 @@ class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var status: Boolean = false
-    private lateinit var detailfragment : DetailEmergencyFragment
     private lateinit var functions : FirebaseFunctions
+    private lateinit var detailfragment: DetailEmergencyFragment
     private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
 
     override fun onCreateView(
@@ -44,7 +44,7 @@ class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
+        detailfragment = DetailEmergencyFragment()
         //função para buscar dados no Firestore para a recyclerView
         //emergencyList = findEmergencies(emergencyList).result.payload as MutableList<Emergency>
 
@@ -65,9 +65,8 @@ class HomeFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
     override fun onItemClick(position: Int) {
         val emergency = emergencyList[position]
         //passar para o próximo fragment
-
-        val transaction : FragmentTransaction = childFragmentManager.beginTransaction()
-        transaction.replace(R.id.drawer_layout,detailfragment)
+        val transaction : FragmentTransaction = parentFragmentManager.beginTransaction()
+        transaction.replace(R.id.container_menu,detailfragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }

@@ -100,26 +100,5 @@
 
     </fragment>
 
-    <fragment
-        android:id="@+id/HomeFragment"
-        android:name="br.com.minhaempresa.teethkids.menu.home.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home">
-
-        <action
-            android:id="@+id/action_HomeFragment_to_DetailEmergencyFragment"
-            app:destination="@+id/DetailEmergencyFragment"/>
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/DetailEmergencyFragment"
-        android:name="br.com.minhaempresa.teethkids.menu.recyclerViewHome.DetailEmergencyFragment"
-        android:label="Details"
-        tools:layout="@layout/fragment_detail_emergency">
-
-    </fragment>
-
-
 
 </navigation>

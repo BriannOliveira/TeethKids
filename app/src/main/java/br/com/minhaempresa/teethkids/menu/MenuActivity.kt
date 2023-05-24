@@ -25,20 +25,19 @@ class MenuActivity : AppCompatActivity() {
     private var _binding: ActivityMenuBinding? = null
     private val binding get() = _binding!!
     private lateinit var menuFragment: MenuFragment
+    private lateinit var homeFragment: HomeFragment
     private lateinit var notificationsfragment: NotificationsDisabledFragment
+    private val fragmentManager = supportFragmentManager
+    private val fragmentTransaction = fragmentManager.beginTransaction()
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (!isGranted){
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.container_menu, notificationsfragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         } else {
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.container_menu, menuFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
@@ -49,12 +48,14 @@ class MenuActivity : AppCompatActivity() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
             PackageManager.PERMISSION_GRANTED
         ) {
+            fragmentTransaction.replace(R.id.container_menu, menuFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
             // FCM SDK (and your app) can post notifications.
         } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-            // TODO: display an educational UI explaining to the user the features that will be enabled
-            //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
-            //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
-            //       If the user selects "No thanks," allow the user to continue without notifications.
+            fragmentTransaction.replace(R.id.container_menu, notificationsfragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         } else {
             // Directly ask for the permission
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
@@ -70,12 +71,12 @@ class MenuActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
-        notificationsfragment = NotificationsDisabledFragment()
         menuFragment = MenuFragment()
+        notificationsfragment = NotificationsDisabledFragment()
+        homeFragment = HomeFragment()
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.container_menu, notificationsfragment)
+        fragmentTransaction.add(R.id.container_menu, menuFragment)
         fragmentTransaction.commit()
 
 
