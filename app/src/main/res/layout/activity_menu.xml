@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menu.MenuActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/nav_view" />
 
-</androidx.fragment.app.FragmentContainerView>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navigation_menu"
+        android:background="@color/whitetheme"
+        app:itemIconTint="@color/greenbl"
+        app:itemPaddingTop="20dp"
+        app:itemIconSize="30dp"
+        android:elevation="7dp" />
+
+
+
+</RelativeLayout>

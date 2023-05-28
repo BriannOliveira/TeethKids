@@ -3,11 +3,13 @@ package br.com.minhaempresa.teethkids.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentLoginBinding
@@ -16,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 
@@ -66,18 +69,22 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     // login completado com sucesso.
-                    val intent = Intent(requireContext(), MenuActivity::class.java)
-                    startActivity(intent)
-                    (activity as MainActivity).finish()
+                    val user = auth.currentUser?.uid
+                    if(user != null){
+                        val intent = Intent(requireContext(), MenuActivity::class.java)
+                        intent.putExtra("user",user)
+                        Log.d("UserRoot","${user}")
+                        startActivity(intent)
+                        (activity as MainActivity).finish()
+                    } else {
+                        Toast.makeText(requireContext(),"Ocorreu um erro ao fazer o login.",Toast.LENGTH_SHORT)
+                    }
+
                 } else {
                     if (it.exception is FirebaseAuthException) {
                         Snackbar.make(requireView(),"Não foi possível fazer o login, verifique os dados e tente novamente.", Snackbar.LENGTH_LONG).show()
                     }
                 }
             }
-    }
-
-    companion object {
-
     }
 }

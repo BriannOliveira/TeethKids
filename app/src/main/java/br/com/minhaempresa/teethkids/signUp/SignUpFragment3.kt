@@ -1,6 +1,6 @@
 package br.com.minhaempresa.teethkids.signUp
 
-import android.content.Intent
+
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -13,13 +13,10 @@ import androidx.navigation.fragment.findNavController
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignup3Binding
 import br.com.minhaempresa.teethkids.login.MainActivity
-import br.com.minhaempresa.teethkids.menu.MenuActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import org.json.JSONArray
-import org.json.JSONObject
 
 class SignUpFragment3 : Fragment() {
 
@@ -72,7 +69,7 @@ class SignUpFragment3 : Fragment() {
                         viewModel.uiState.value.addresstwo,
                         viewModel.uiState.value.addressthree,
                         viewModel.uiState.value.resume,
-                        (activity as MainActivity).getFcmToken()
+                        (activity as MainActivity).getFcmToken() //Não está funcionando
                     )
                 }
             }
@@ -89,19 +86,6 @@ class SignUpFragment3 : Fragment() {
         _binding = null
     }
 
-    fun JSONObject.toMap(): Map<String, *> = keys().asSequence().associateWith {
-        when (val value = this[it])
-        {
-            is JSONArray ->
-            {
-                val map = (0 until value.length()).associate { Pair(it.toString(), value[it]) }
-                JSONObject(map).toMap().values.toList()
-            }
-            is JSONObject -> value.toMap()
-            JSONObject.NULL -> null
-            else            -> value
-        }
-    }
 
 
     private fun signUpNewAccount(
@@ -117,7 +101,7 @@ class SignUpFragment3 : Fragment() {
     ){
         auth = Firebase.auth
 
-        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener { cadastro ->
+        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener { _->
             Toast.makeText(requireContext(),"Conta autenticada com sucesso!",Toast.LENGTH_SHORT).show()
             val userMap = hashMapOf(
                 "name" to name,
@@ -127,7 +111,8 @@ class SignUpFragment3 : Fragment() {
                 "addresstwo" to addresstwo,
                 "addressthree" to addressthree,
                 "resume" to resume,
-                "fcmToken" to fcmToken
+                "fcmToken" to fcmToken,
+                "status" to false
             )
 
             val db = (activity as MainActivity).db

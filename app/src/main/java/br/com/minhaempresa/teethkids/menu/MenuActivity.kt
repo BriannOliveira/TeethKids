@@ -2,43 +2,36 @@ package br.com.minhaempresa.teethkids.menu
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.view.Menu
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.ActivityMenuBinding
-import br.com.minhaempresa.teethkids.menu.home.HomeFragment
-import br.com.minhaempresa.teethkids.menu.recyclerViewHome.DetailEmergencyFragment
+import br.com.minhaempresa.teethkids.menu.emergency.EmergenciesFragment
+import br.com.minhaempresa.teethkids.menu.profile.ProfileFragment
+import br.com.minhaempresa.teethkids.menu.reputation.ReputationFragment
 
-class MenuActivity : AppCompatActivity() {
-    private lateinit var appBarConfiguration: AppBarConfiguration
+class MenuActivity : AppCompatActivity(){
     private var _binding: ActivityMenuBinding? = null
     private val binding get() = _binding!!
-    private lateinit var menuFragment: MenuFragment
-    private lateinit var homeFragment: HomeFragment
+    private lateinit var emergenciesFragment: EmergenciesFragment
     private lateinit var notificationsfragment: NotificationsDisabledFragment
-    private val fragmentManager = supportFragmentManager
-    private val fragmentTransaction = fragmentManager.beginTransaction()
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (!isGranted){
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.container_menu, notificationsfragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         } else {
-            fragmentTransaction.replace(R.id.container_menu, menuFragment)
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.container_menu, emergenciesFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
@@ -48,11 +41,15 @@ class MenuActivity : AppCompatActivity() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
             PackageManager.PERMISSION_GRANTED
         ) {
-            fragmentTransaction.replace(R.id.container_menu, menuFragment)
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.container_menu, emergenciesFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
             // FCM SDK (and your app) can post notifications.
         } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.container_menu, notificationsfragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
@@ -70,28 +67,62 @@ class MenuActivity : AppCompatActivity() {
         _binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        menuFragment = MenuFragment()
+        //instânciando os fragmentos
+        emergenciesFragment = EmergenciesFragment()
         notificationsfragment = NotificationsDisabledFragment()
-        homeFragment = HomeFragment()
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.container_menu, menuFragment)
+
+        //pegando dados passados do outro fragment
+        val user = intent.getStringExtra("user")
+        Log.d("UserExtra","${user}")
+
+        //passando o dado para o menuFragment
+        val bundle = Bundle()
+        bundle.putString("user",user)
+        emergenciesFragment.arguments = bundle
+
+        //configurando o fragmentManager
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.container_menu, emergenciesFragment)
         fragmentTransaction.commit()
+
+        //configurando o bottom navigation view
+        binding.navView.setOnItemSelectedListener{ item ->
+            Log.d("NAV","Item selected ${item.itemId}")
+            when(item.itemId){
+                R.id.navigation_emergencies -> {
+                    val fragmentManager = supportFragmentManager
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    fragmentTransaction.replace(R.id.container_menu, emergenciesFragment)
+                        .commit()
+                    Log.d("ItemID","Id: ${R.id.navigation_emergencies}")
+                    true
+                }
+                R.id.navigation_myreputation -> {
+                    val fragmentManager = supportFragmentManager
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    var reputationFragment = ReputationFragment()
+                    fragmentTransaction.replace(R.id.container_menu, reputationFragment)
+                        .commit()
+                    true
+                }
+                R.id.navigation_profile -> {
+                    val fragmentManager = supportFragmentManager
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    var profileFragment = ProfileFragment()
+                    fragmentTransaction.replace(R.id.container_menu, profileFragment)
+                        .commit()
+                    true
+                }
+                else -> false
+            }
+        }
+
+
+
 
 
         //perguntar pela permissão de notificação
         askNotificationPermission();
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu, menu)
-        return true
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_menu)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
 }

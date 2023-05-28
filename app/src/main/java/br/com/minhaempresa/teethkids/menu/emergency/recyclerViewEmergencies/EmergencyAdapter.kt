@@ -1,4 +1,4 @@
-package br.com.minhaempresa.teethkids.menu.recyclerViewHome
+package br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies
 
 import android.view.LayoutInflater
 import android.view.View
