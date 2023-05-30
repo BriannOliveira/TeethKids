@@ -13,5 +13,7 @@
     <color name="darkred">#A6464E</color>
     <color name="red">#D93D48</color>
     <color name="gray">#AbA8A7</color>
+    <color name="darkgray">#808080</color>
+    <color name="grayblack">#474747</color>
 
 </resources>

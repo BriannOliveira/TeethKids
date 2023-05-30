@@ -12,6 +12,7 @@ import br.com.minhaempresa.teethkids.databinding.FragmentEmergenciesBinding
 import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.DetailEmergencyFragment
 import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.Emergency
 import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.EmergencyAdapter
+import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.Status
 import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.emergencyList
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -123,7 +124,10 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
             R.drawable.avatar,
             "Briann Oliveira",
             "(19)99406-1793",
-            5
+            5,
+            "fsdfsdfsdfDFASDF33",
+            Status.NEW,
+            "SKJFLAKSDFLSKFJLKSA"
         )
         emergencyList.add(emerg1)
 
@@ -131,7 +135,10 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
             R.drawable.avatar,
             "Fernando Gomes",
             "(19)99784-9876",
-            4
+            4,
+            "fsdfsdfsdfDFASDF33",
+            Status.NEW,
+            "SKJFLAKSDFLSKFJLKSA"
         )
         emergencyList.add(emerg2)
 
@@ -139,7 +146,10 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
             R.drawable.avatar,
             "Gabriela Souza",
             "(19)99387-3987",
-            3
+            3,
+            "fsdfsdfsdfDFASDF33",
+            Status.NEW,
+            "SKJFLAKSDFLSKFJLKSA"
         )
         emergencyList.add(emerg3)
 
@@ -147,7 +157,10 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
             R.drawable.avatar,
             "Joana Luiza",
             "(19)99351-1078",
-            1
+            1,
+            "fsdfsdfsdfDFASDF33",
+            Status.NEW,
+            "SKJFLAKSDFLSKFJLKSA"
         )
         emergencyList.add(emerg4)
     }

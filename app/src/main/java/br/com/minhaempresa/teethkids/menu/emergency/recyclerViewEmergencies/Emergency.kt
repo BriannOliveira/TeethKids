@@ -4,8 +4,13 @@ import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import kotlinx.parcelize.Parcelize
 
-
 var emergencyList = mutableListOf<Emergency>()
+
+enum class Status{
+    NEW,
+    DRAFT,
+    DONE
+}
 
 @Parcelize
 data class Emergency(
@@ -13,5 +18,7 @@ data class Emergency(
     var nameUser: String,
     var phone: String,
     var time: Int,
-    val id: Int? = emergencyList.size
+    val uid: String,
+    val status: Status,
+    val fcmToken: String,
 ) : Parcelable

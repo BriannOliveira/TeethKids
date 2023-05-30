@@ -22,7 +22,8 @@
                 android:id="@+id/item_reputation_photo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/avatar"/>
+                android:src="@drawable/avatar"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:id="@+id/item_reputation_time"
@@ -33,15 +34,15 @@
                 android:layout_marginEnd="20dp"
                 android:text="20/04"
                 android:textColor="@color/gray"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/item_reputation_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="0dp"
                 android:text="Briann Oliveira Gomes"
                 android:textColor="@color/greenbl"
@@ -54,13 +55,15 @@
             <RatingBar
                 android:id="@+id/item_reputation_ratingbar"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginBottom="10dp"
                 android:rating="5"
                 android:progressTint="@color/greenbl"
-                android:layout_below="@id/item_reputation_photo"/>
+                android:layout_below="@id/item_reputation_name"
+                android:layout_toEndOf="@id/item_reputation_photo"
+                android:clickable="false"
+                style="@style/Widget.AppCompat.RatingBar.Indicator"/>
 
 
 
@@ -70,14 +73,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/item_reputation_time"
                 android:text="5.0"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="@color/greenbl"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="25dp"/>
-
-
+                android:layout_marginTop="5dp"/>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

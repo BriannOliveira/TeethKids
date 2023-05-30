@@ -12,9 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignup3Binding
+import br.com.minhaempresa.teethkids.helper.FirebaseMyUser
 import br.com.minhaempresa.teethkids.login.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -114,7 +116,7 @@ class SignUpFragment3 : Fragment() {
                 "fcmToken" to fcmToken,
                 "status" to false
             )
-
+            FirebaseMyUser.updateUserName(name)
             val db = (activity as MainActivity).db
             if(FirebaseAuth.getInstance().currentUser!=null){
                 val userId = FirebaseAuth.getInstance().currentUser!!.uid

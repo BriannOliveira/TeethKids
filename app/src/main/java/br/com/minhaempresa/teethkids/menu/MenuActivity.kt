@@ -117,9 +117,8 @@ class MenuActivity : AppCompatActivity(){
             }
         }
 
-
-
-
+        //configurando toolbar
+        setSupportActionBar(binding.myToolbar)
 
         //perguntar pela permissão de notificação
         askNotificationPermission();

@@ -1,14 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.profile.ProfileFragment">
+    tools:context=".menu.profile.ProfileFragment"
+    android:background="@color/greenbl">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/imgEditPhoto"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/avatar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"/>
+
     <TextView
+        android:id="@+id/tvEditPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alterar foto"
+        android:layout_below="@id/imgEditPhoto"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textColor="@color/whitetheme"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvEditProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_below="@id/tvEditPhoto"
+        android:layout_marginTop="15dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-</FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome:"
+                android:textSize="16sp"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/grayblack"
+                android:layout_marginStart="25dp"/>
+
+
+            <TextView
+                android:id="@+id/tvEditName"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:text="Briann Oliveira Gomes"
+                android:layout_marginStart="130dp"
+                android:textSize="16sp"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/grayblack"
+                />
+
+            <View
+                android:id="@+id/v1"
+                android:layout_width="260dp"
+                android:layout_height="1dp"
+                android:background="@color/darkgray"
+                android:layout_below="@id/tvEditName"
+                android:layout_marginTop="20dp"
+                android:layout_alignStart="@id/tvEditName"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Telefone:"
+                android:textSize="16sp"
+                android:textColor="@color/grayblack"
+                android:layout_below="@id/v1"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="25dp"/>
+
+
+            <TextView
+                android:id="@+id/tvEditPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/v1"
+                android:text="Tel: (19)994061793"
+                android:textSize="16sp"
+                android:textColor="@color/grayblack"
+                android:layout_alignStart="@id/tvEditName"
+                android:layout_marginTop="15dp"
+                />
+
+            <View
+                android:id="@+id/v2"
+                android:layout_width="260dp"
+                android:layout_height="1dp"
+                android:background="@color/darkgray"
+                android:layout_below="@id/tvEditPhone"
+                android:layout_alignStart="@id/v1"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Currículo:"
+                android:textSize="16sp"
+                android:textColor="@color/grayblack"
+                android:layout_below="@id/v2"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="25dp"/>
+
+            <TextView
+                android:id="@+id/tvEditResume"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/v2"
+                android:layout_alignStart="@id/tvEditName"
+                android:text="Currículo bom! Vários certicados maneiros e eficientes de alta qualidade."
+                android:layout_marginTop="15dp"
+                android:textSize="16sp"
+                android:textColor="@color/grayblack"/>
+
+            <Button
+                android:id="@+id/btnEditData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_custom"
+                android:text="Alterar dados"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="40dp"/>
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

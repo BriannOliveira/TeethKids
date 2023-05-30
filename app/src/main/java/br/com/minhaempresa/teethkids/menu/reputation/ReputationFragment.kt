@@ -12,6 +12,8 @@ import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.Emer
 import br.com.minhaempresa.teethkids.menu.reputation.recyclerViewReputation.Avaliation
 import br.com.minhaempresa.teethkids.menu.reputation.recyclerViewReputation.AvaliationAdapter
 import br.com.minhaempresa.teethkids.menu.reputation.recyclerViewReputation.avaliationslist
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.ShapeAppearanceModel
 
 
 class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
@@ -39,6 +41,17 @@ class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = avaliationAdapter
+
+        //configurando cardview estilizado
+        val shapeAppearanceModel = ShapeAppearanceModel()
+            .toBuilder()
+            .setBottomLeftCorner(CornerFamily.ROUNDED, 0f)
+            .setBottomRightCorner(CornerFamily.ROUNDED, 0f)
+            .setTopLeftCorner(CornerFamily.ROUNDED,80f)
+            .setTopRightCorner(CornerFamily.ROUNDED,80f)
+            .build()
+
+        binding.cvAvaliations.shapeAppearanceModel = shapeAppearanceModel
 
     }
 

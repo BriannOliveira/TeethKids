@@ -19,8 +19,8 @@
             android:textStyle="bold"
             android:textSize="40sp"
             android:textColor="@color/greenbl"
-            android:layout_marginTop="50dp"
-            android:layout_marginStart="40dp"/>
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="30dp"/>
         <TextView
             android:id="@+id/tvWelcome2"
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
             android:id="@+id/cvStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_below="@id/tvWelcome2"
             app:cardCornerRadius="10dp"
             app:cardElevation="3dp"
@@ -54,10 +54,10 @@
                     android:layout_height="wrap_content"
                     android:text="Seu Status:"
                     android:textStyle="bold"
-                    android:textSize="25sp"
+                    android:textSize="22sp"
                     android:textColor="@color/greenbl"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginVertical="18dp"/>
+                    android:layout_marginStart="30dp"
+                    android:layout_marginVertical="12dp"/>
 
                 <!-- Criar cor para o botão switch ligado e desligado-->
                 <androidx.appcompat.widget.SwitchCompat
@@ -83,11 +83,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Emergências"
-            android:textSize="28sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/darkred"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
             android:layout_below="@+id/cvStatus"
             />
 
@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tvEmergencias"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="0dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"

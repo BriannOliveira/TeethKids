@@ -97,24 +97,9 @@ class SignUpFragment : Fragment() {
 
     }
 
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-    private fun createTextWatcher(onTextChanged: (String) -> Unit): TextWatcher {
-        return object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                onTextChanged(s.toString())
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        }
-    }
-
 }
 

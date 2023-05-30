@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".menu.MenuActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:title="iTooth"
+        app:titleTextColor="@color/whitetheme"
+        app:titleMarginStart="172dp"/>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_menu"
         android:layout_width="match_parent"
