@@ -98,6 +98,26 @@
         android:label="SignUp"
         tools:layout="@layout/fragment_preview_camera">
 
+        <action
+            android:id="@+id/action_CameraPreview_to_SignUp"
+            app:destination="@id/SignUpFragment"/>
+
+        <action
+            android:id="@+id/action_CameraPreview_to_TakenPhotoFragment"
+            app:destination="@id/PhotoTakenFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/PhotoTakenFragment"
+        android:name="br.com.minhaempresa.teethkids.signUp.PhotoTakenFragment"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_photo_taken">
+
+        <action
+            android:id="@+id/action_PhotoTakenFragment_to_CameraPreview"
+            app:destination="@id/CameraPreview"/>
+
     </fragment>
 
 

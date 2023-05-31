@@ -34,7 +34,6 @@ class NotificationsDisabledFragment : Fragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,5 +62,4 @@ class NotificationsDisabledFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

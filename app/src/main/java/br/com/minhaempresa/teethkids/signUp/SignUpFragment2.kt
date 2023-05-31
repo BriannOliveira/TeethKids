@@ -8,25 +8,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import br.com.minhaempresa.teethkids.login.MainActivity
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignup2Binding
-import br.com.minhaempresa.teethkids.signUp.model.UserRegistrationViewModel
 import com.google.android.material.snackbar.Snackbar
 
 
 class SignUpFragment2 : Fragment() {
 
-    private val viewModel: UserRegistrationViewModel by viewModels()
     private var _binding: FragmentSignup2Binding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSignup2Binding.inflate(inflater, container, false)
         return binding.root
     }
@@ -67,7 +64,7 @@ class SignUpFragment2 : Fragment() {
         }
 
         //Botão para ir para o primeiro fragmento do login
-        binding.btnVoltar.setOnClickListener(){
+        binding.btnVoltar.setOnClickListener{
             findNavController().navigate(R.id.action_SignUp2_to_SignUp)
         }
     }

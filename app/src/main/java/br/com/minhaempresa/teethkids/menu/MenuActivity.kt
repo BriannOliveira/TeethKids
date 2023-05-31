@@ -123,5 +123,4 @@ class MenuActivity : AppCompatActivity(){
         //perguntar pela permissão de notificação
         askNotificationPermission();
     }
-
 }

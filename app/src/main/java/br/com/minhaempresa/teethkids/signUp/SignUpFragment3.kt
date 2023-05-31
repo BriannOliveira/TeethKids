@@ -16,22 +16,19 @@ import br.com.minhaempresa.teethkids.helper.FirebaseMyUser
 import br.com.minhaempresa.teethkids.login.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class SignUpFragment3 : Fragment() {
 
     private lateinit var auth: FirebaseAuth
-
     private var _binding: FragmentSignup3Binding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSignup3Binding.inflate(inflater,container,false)
         return binding.root
     }
@@ -39,13 +36,12 @@ class SignUpFragment3 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         /** Esse botão termina o ciclo do SignUp e volta para atividade de Login **/
-        binding.btnAvancar.setOnClickListener(){
+        binding.btnAvancar.setOnClickListener{
             val viewModel = (activity as MainActivity).viewModel
             //Armazenamento do currículo no viewModel
             viewModel.updateResume(binding.etCurriculo.text.toString())
-            viewModel.uiState.value.resume?.let { Value ->
+            viewModel.uiState.value.resume.let { Value ->
                 if(Value.isEmpty()){
                     val snackbar = Snackbar.make(view,"Preencha o campo Currículo corretamente com pelo menos 5 linhas.", Snackbar.LENGTH_SHORT)
                     snackbar.setBackgroundTint(Color.RED)
@@ -78,7 +74,7 @@ class SignUpFragment3 : Fragment() {
         }
 
         //Botão para ir para o fragmento 2 do login
-        binding.btnVoltar.setOnClickListener(){
+        binding.btnVoltar.setOnClickListener{
             findNavController().navigate(R.id.action_SignUp3_to_SignUp2)
         }
     }
@@ -87,8 +83,6 @@ class SignUpFragment3 : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 
     private fun signUpNewAccount(
         name: String,
@@ -103,7 +97,7 @@ class SignUpFragment3 : Fragment() {
     ){
         auth = Firebase.auth
 
-        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener { _->
+        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
             Toast.makeText(requireContext(),"Conta autenticada com sucesso!",Toast.LENGTH_SHORT).show()
             val userMap = hashMapOf(
                 "name" to name,

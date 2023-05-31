@@ -59,6 +59,17 @@
                 android:textColor="@color/grayblack"
                 />
 
+            <EditText
+                android:id="@+id/etEditName"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="125dp"
+                android:textSize="16sp"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/grayblack"
+                android:visibility="gone"
+                />
+
             <View
                 android:id="@+id/v1"
                 android:layout_width="260dp"
@@ -91,6 +102,18 @@
                 android:layout_marginTop="15dp"
                 />
 
+            <EditText
+                android:id="@+id/etEditPhone"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/grayblack"
+                android:layout_alignStart="@id/etEditName"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/v1"
+                android:visibility="gone"
+                />
+
             <View
                 android:id="@+id/v2"
                 android:layout_width="260dp"
@@ -121,6 +144,18 @@
                 android:textSize="16sp"
                 android:textColor="@color/grayblack"/>
 
+            <EditText
+                android:id="@+id/etEditResume"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/v2"
+                android:layout_alignStart="@id/etEditName"
+                android:textSize="16sp"
+                android:textColor="@color/grayblack"
+                android:visibility="gone"/>
+
+
             <Button
                 android:id="@+id/btnEditData"
                 android:layout_width="wrap_content"
@@ -131,6 +166,18 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="40dp"/>
+
+            <Button
+                android:id="@+id/btnSaveData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_custom"
+                android:text="Salvar"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="40dp"
+                android:visibility="gone"/>
 
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>

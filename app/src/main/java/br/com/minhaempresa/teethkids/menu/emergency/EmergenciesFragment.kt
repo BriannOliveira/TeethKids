@@ -54,7 +54,7 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
         recyclerView.adapter = emergencyAdapter
 
         val user = arguments?.getString("user")
-        Log.d("UserArgument","${user}")
+        Log.d("UserArgument","$user")
 
         //configurar nome do dentista na textview
         if (user != null){

@@ -18,7 +18,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 
@@ -33,7 +32,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -44,11 +43,11 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.btnLogin.setOnClickListener(){
+        binding.btnLogin.setOnClickListener{
             login(binding.etEmail.text.toString(),binding.etSenha.text.toString())
         }
 
-        binding.btnCriarconta.setOnClickListener(){
+        binding.btnCriarconta.setOnClickListener{
             findNavController().navigate(R.id.action_Login_to_SignUp)
         }
 
@@ -73,11 +72,11 @@ class LoginFragment : Fragment() {
                     if(user != null){
                         val intent = Intent(requireContext(), MenuActivity::class.java)
                         intent.putExtra("user",user)
-                        Log.d("UserRoot","${user}")
+                        Log.d("UserRoot","$user")
                         startActivity(intent)
                         (activity as MainActivity).finish()
                     } else {
-                        Toast.makeText(requireContext(),"Ocorreu um erro ao fazer o login.",Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(),"Ocorreu um erro ao fazer o login.",Toast.LENGTH_SHORT).show()
                     }
 
                 } else {

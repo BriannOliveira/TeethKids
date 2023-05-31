@@ -13,7 +13,6 @@ class UserPreferencesRepository private constructor(context: Context) {
         context.applicationContext.getSharedPreferences(USER_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
     //Obter o UID
-
     var uid:String = ""
         get(){
             return sharedPreferences.getString(UID_KEY,"")!!

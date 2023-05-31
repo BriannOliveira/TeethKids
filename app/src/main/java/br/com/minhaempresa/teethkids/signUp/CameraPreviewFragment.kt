@@ -14,6 +14,8 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
+import br.com.minhaempresa.teethkids.R
 import com.google.common.util.concurrent.ListenableFuture
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -27,6 +29,7 @@ class CameraPreviewFragment : Fragment() {
     private val binding get() = _binding!!
 
     // processamento de imagens
+    //promessa de voltar um objeto do tipo ProcessCameraProvider
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
 
     // selecionar a câmera frontal ou traseira
@@ -41,7 +44,7 @@ class CameraPreviewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPreviewCameraBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -56,8 +59,12 @@ class CameraPreviewFragment : Fragment() {
         // chamar o metodo de iniciar a camera
         startCamera()
 
-        binding.btnTirarfoto.setOnClickListener(){
+        binding.btnTirarfoto.setOnClickListener{
             takePhoto()
+        }
+
+        binding.ibtnClose.setOnClickListener {
+            findNavController().navigate(R.id.action_CameraPreview_to_SignUp)
         }
     }
 
@@ -67,6 +74,7 @@ class CameraPreviewFragment : Fragment() {
     }
 
     private fun startCamera(){
+        //quando a cameraProviderFuture estiver pronta, irá fazer isso (callback)
         cameraProviderFuture.addListener({
 
             imageCapture = ImageCapture.Builder().build()
@@ -95,7 +103,6 @@ class CameraPreviewFragment : Fragment() {
             //nome do arquivo para gravar a foto.
             val fileName = "FOTO_JPEG_${System.currentTimeMillis()}"
             val file = File(requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), fileName)
-
             val outputFileOptions = ImageCapture.OutputFileOptions.Builder(file).build()
 
             it.takePicture(
@@ -104,6 +111,10 @@ class CameraPreviewFragment : Fragment() {
                 object : ImageCapture.OnImageSavedCallback{
                     override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                         Log.i("CameraPreview", "A imagem foi salva no diretório: ${file.toURI()}")
+
+                        //passar a imagem para o PhotoTakenFragment
+                        val phototakenfragment = PhotoTakenFragment.newInstance(file)
+                        findNavController().navigate(R.id.action_CameraPreview_to_TakenPhotoFragment)
                     }
 
                     override fun onError(exception: ImageCaptureException) {

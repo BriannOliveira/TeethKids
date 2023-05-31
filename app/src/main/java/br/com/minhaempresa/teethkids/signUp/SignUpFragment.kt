@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import android.graphics.Color
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import br.com.minhaempresa.teethkids.login.MainActivity
@@ -38,7 +36,7 @@ class SignUpFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSignupBinding.inflate(inflater, container, false)
         return binding.root
@@ -50,13 +48,13 @@ class SignUpFragment : Fragment() {
         val viewModel = (activity as MainActivity).viewModel
 
         //Configuração para a imagem ter função para tirar selfie
-        binding.imgUsuario.setOnClickListener(){
+        binding.imgUsuario.setOnClickListener{
             cameraProviderResult.launch(android.Manifest.permission.CAMERA)
         }
 
 
         //Botão para ir para o segundo fragmento do login
-        binding.btnAvancar.setOnClickListener(){
+        binding.btnAvancar.setOnClickListener{
 
             //Armazenamento dos dados no ViewModel para utilizar em outros fragmentos
             viewModel.updateName(binding.etNome.text.toString())
@@ -79,7 +77,7 @@ class SignUpFragment : Fragment() {
                 snackbar.setBackgroundTint(Color.RED)
                 snackbar.show()
             }
-            else if (name.isEmpty() == true){
+            else if (name.isEmpty()){
                 val snackbar1 = Snackbar.make(view,"Preencha o campo do Nome corretamente.", Snackbar.LENGTH_SHORT)
                 snackbar1.setBackgroundTint(Color.RED)
                 snackbar1.show()

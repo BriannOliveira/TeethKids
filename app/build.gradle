@@ -54,6 +54,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:24.5.0'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
 
+    //GERAIS
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -73,6 +74,9 @@ dependencies {
     implementation "androidx.camera:camera-camera2:1.2.2"
     implementation "androidx.camera:camera-lifecycle:1.2.2"
     implementation "androidx.camera:camera-view:1.2.2"
+
+    //GLIDE
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
 
     //APP CHECK em modo depuração
     implementation 'com.google.firebase:firebase-appcheck-debug:16.1.2'

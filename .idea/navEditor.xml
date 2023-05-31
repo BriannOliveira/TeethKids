@@ -66,39 +66,6 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="DetailEmergencyFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="866" />
-                            <option name="y" value="318" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="HomeFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="861" />
-                            <option name="y" value="15" />
-                          </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_HomeFragment_to_DetailEmergencyFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="LoginFragment">
                     <value>
                       <LayoutPositions>

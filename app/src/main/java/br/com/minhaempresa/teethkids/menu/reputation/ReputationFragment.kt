@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentReputationBinding
 import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.EmergencyAdapter
 import br.com.minhaempresa.teethkids.menu.reputation.recyclerViewReputation.Avaliation
@@ -24,7 +23,7 @@ class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentReputationBinding.inflate(inflater, container, false)
         return binding.root
