@@ -31,8 +31,8 @@ class DetailEmergencyFragment : Fragment() {
         //Pegar os dados do item selecionado na RecyclerView e setar eles aqui...
         val emergency = arguments?.getParcelable("emergency", Emergency::class.java)
         if (emergency!=null){
-            binding.tvEmergencyName.text = emergency.nameUser
-            binding.tvEmergencyPhone.text = emergency.phone
+            binding.tvEmergencyName.text = emergency.name
+            binding.tvEmergencyPhone.text = emergency.phoneNumber
         }
 
         binding.imgFechar.setOnClickListener {

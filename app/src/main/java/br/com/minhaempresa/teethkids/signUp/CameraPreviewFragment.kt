@@ -113,7 +113,7 @@ class CameraPreviewFragment : Fragment() {
                         Log.i("CameraPreview", "A imagem foi salva no diretório: ${file.toURI()}")
 
                         //passar a imagem para o PhotoTakenFragment
-                        val phototakenfragment = PhotoTakenFragment.newInstance(file)
+                        PhotoTakenFragment.newInstance(file)
                         findNavController().navigate(R.id.action_CameraPreview_to_TakenPhotoFragment)
                     }
 

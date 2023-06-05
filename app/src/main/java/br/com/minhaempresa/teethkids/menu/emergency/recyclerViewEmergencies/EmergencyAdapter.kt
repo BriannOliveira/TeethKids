@@ -20,10 +20,10 @@ class EmergencyAdapter(
 
         //função de vincular dados ao ViewHolder
         fun bindEmergency(emergency: Emergency){
-            itemEmergenciaBinding.itemEmergenciaTitulo.text = emergency.nameUser
-            itemEmergenciaBinding.itemEmergenciaDescricao.text = emergency.phone
-            itemEmergenciaBinding.itemEmergenciaFoto.setImageResource(emergency.photo)
-            itemEmergenciaBinding.itemEmergenciaTempo.setText("${emergency.time.toString()} min atrás")
+            itemEmergenciaBinding.itemEmergenciaTitulo.text = emergency.name
+            itemEmergenciaBinding.itemEmergenciaDescricao.text = emergency.phoneNumber
+            //colocar foto
+            itemEmergenciaBinding.itemEmergenciaTempo.setText("${emergency.time.toMinutesFromNow().toInt()} min atrás")
         }
 
         init {
