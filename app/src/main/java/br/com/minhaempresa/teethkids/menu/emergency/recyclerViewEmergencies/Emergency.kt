@@ -9,9 +9,10 @@ import java.util.concurrent.TimeUnit
 var emergencyList = mutableListOf<Emergency>()
 
 enum class Status{
-    NEW,
-    DRAFT,
-    DONE
+    //tem que ser exatamente igual ao typescript, inclusive as minúsculas e maiuscúlas
+    new,
+    draft,
+    done
 }
 @Parcelize
 data class Time(

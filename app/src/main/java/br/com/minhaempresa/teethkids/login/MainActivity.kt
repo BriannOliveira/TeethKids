@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-
     fun storeUserId(uid: String) {
         userPreferencesRepository.uid = uid
     }

@@ -12,6 +12,7 @@ import br.com.minhaempresa.teethkids.databinding.ActivityMenuBinding
 import br.com.minhaempresa.teethkids.menu.emergency.EmergenciesFragment
 import br.com.minhaempresa.teethkids.menu.profile.ProfileFragment
 import br.com.minhaempresa.teethkids.menu.reputation.ReputationFragment
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MenuActivity : AppCompatActivity(){
     private var _binding: ActivityMenuBinding? = null
@@ -29,6 +30,17 @@ class MenuActivity : AppCompatActivity(){
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         } else {
+
+            //inscrever o dispositivo no tópico new_emergency para receber notificações do FCM
+            FirebaseMessaging.getInstance().subscribeToTopic("new_emergency")
+                .addOnCompleteListener{ task ->
+                    var msg = "Inscrito para o tópico new_emergency."
+                    if(!task.isSuccessful){
+                        msg = "Inscrição para o tópico new_emergency falhou."
+                    }
+                    Log.d("FMSubscription",msg)
+                }
+
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.container_menu, emergenciesFragment)
@@ -46,23 +58,14 @@ class MenuActivity : AppCompatActivity(){
             fragmentTransaction.replace(R.id.container_menu, emergenciesFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
-            // FCM SDK (and your app) can post notifications.
-        } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.container_menu, notificationsfragment)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
         } else {
             // Directly ask for the permission
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         _binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
