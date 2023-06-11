@@ -20,12 +20,18 @@ const val channelName = "br.com.minhaempresa.teethkids.helper"
 
 class MyFirebaseMessagingService: FirebaseMessagingService() {
 
+
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
 
-         if (message.notification != null){
-            triggerNotification(message.notification!!.title!!, message.notification!!.body!!)
+         if (message.data.isNotEmpty()){
+            triggerNotification(message.data["title"]!!, message.data["body"]!!)
         }
+    }
+
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+        //sendRegistrationToServer(token)
     }
 
     private fun triggerNotification(title: String, msg: String){
@@ -57,6 +63,7 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
             notificationManager.createNotificationChannel(notificationChannel)
         }
 
+        //envia a notificação
         notificationManager.notify(0, builder.build())
     }
 }
