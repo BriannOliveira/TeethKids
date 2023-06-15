@@ -47,6 +47,7 @@ class MapFragment : Fragment() {
                             val loc = GeoPoint(location?.latitude ?: 0.0, location?.longitude ?: 0.0)
                             FirebaseFirestore.getInstance().collection("acceptances").document(currentUser.uid)
                                 .update("loc",loc)
+
                         }
                 }
             }
