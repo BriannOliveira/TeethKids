@@ -20,7 +20,7 @@ class AvaliationAdapter(
 
         //função de vincular dados ao ViewHolder
         fun bindAvaliatons(avaliation: Avaliation){
-            itemAvaliationBinding.itemReputationName.text = avaliation.nameUser
+            itemAvaliationBinding.itemReputationName.text = avaliation.name
             itemAvaliationBinding.itemReputationRatingbar.rating = avaliation.rate.toFloat()
             itemAvaliationBinding.itemReputationValueRating.text = "${avaliation.rate}"
             if(avaliation.time.toMinutesFromNow() < 1){

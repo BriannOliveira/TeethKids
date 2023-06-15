@@ -7,11 +7,11 @@
 
     <ImageView
         android:id="@+id/imgPhoto"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:src="@drawable/avatar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"/>
+        android:layout_marginTop="40dp"/>
 
     <TextView
         android:id="@+id/tvAvaliationName"
@@ -21,7 +21,7 @@
         android:text="Nome"
         android:layout_below="@+id/imgPhoto"
         android:layout_centerHorizontal="true"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:layout_marginTop="10dp"
         android:textColor="@color/black">
     </TextView>
@@ -32,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvAvaliationName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="18dp"
+        android:progressTint="@color/greenbl"/>
 
     <TextView
         android:id="@+id/tvAvaliationTitleComment"
@@ -41,7 +42,7 @@
         android:text="Comentário:"
         android:layout_below="@id/rbAvaliation"
         android:layout_alignStart="@id/svAvalationComment"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:fontFamily="@font/nexa_heavy"
         android:textSize="22sp"/>
 
@@ -57,15 +58,29 @@
             android:orientation="vertical">
             <TextView
                 android:id="@+id/tvAvaliationComment"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="320dp"
+                android:layout_height="260dp"
                 android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/nexa_heavy"
                 android:justificationMode="inter_word"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp" />
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="Voltar"
+        android:layout_below="@id/svAvalationComment"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/nexa_heavy"
+        android:textAlignment="center"
+        android:backgroundTint="@color/whitetheme"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
 
 </RelativeLayout>

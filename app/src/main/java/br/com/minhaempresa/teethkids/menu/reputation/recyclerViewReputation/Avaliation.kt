@@ -11,6 +11,6 @@ data class Avaliation(
     var time: Time,
     var rate: Double,
     var comment: String,
-    var nameUser: String,
+    var name: String,
 ) : Parcelable
 

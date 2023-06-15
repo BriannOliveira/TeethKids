@@ -41,5 +41,5 @@ data class Emergency(
     var phoneNumber: String,
     var name: String,
     var time: Time,
-    val status: Status,
+    val status: Status
 ) : Parcelable

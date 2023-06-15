@@ -47,23 +47,24 @@ android {
 dependencies {
 
     //FIREBASE
-    implementation platform('com.google.firebase:firebase-bom:31.5.0')
+    implementation platform('com.google.firebase:firebase-bom:32.1.0')
     implementation "com.google.firebase:firebase-auth-ktx"
-    implementation 'com.google.firebase:firebase-functions-ktx:20.2.2'
-    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.2'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.5.0'
+    implementation 'com.google.firebase:firebase-functions-ktx:20.3.1'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.2.1'
 
     //GERAIS
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.fragment:fragment:1.5.7'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+    implementation 'androidx.fragment:fragment:1.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
@@ -81,16 +82,16 @@ dependencies {
 
     def camerax_version = "1.1.0-alpha07"
     //CAMERA
-    implementation "androidx.camera:camera-core:1.2.2"
-    implementation "androidx.camera:camera-camera2:1.2.2"
-    implementation "androidx.camera:camera-lifecycle:1.2.2"
-    implementation "androidx.camera:camera-view:1.2.2"
+    implementation "androidx.camera:camera-core:1.2.3"
+    implementation "androidx.camera:camera-camera2:1.2.3"
+    implementation "androidx.camera:camera-lifecycle:1.2.3"
+    implementation "androidx.camera:camera-view:1.2.3"
 
     //GLIDE
     implementation 'com.github.bumptech.glide:glide:4.15.1'
 
     //APP CHECK em modo depuração
-    implementation 'com.google.firebase:firebase-appcheck-debug:16.1.2'
+    implementation 'com.google.firebase:firebase-appcheck-debug:17.0.1'
 
     //GSON (Google JSON)
     implementation 'com.google.code.gson:gson:2.9.0'

@@ -86,25 +86,22 @@ class MapFragment : Fragment() {
             }
         }
 
-        //ouvir para o caso o socorrista já tenho encerrado a emergência
-        listener = FirebaseFirestore.getInstance().collection("acceptances").addSnapshotListener{snapshot, e ->
-            if(e != null){
-                Toast.makeText(requireContext(),"Houve algum erro. Por favor tente novamente!", Toast.LENGTH_LONG).show()
-                //mudar para fragment anterior
-                return@addSnapshotListener
-            }
-
-            if(snapshot != null && !snapshot.isEmpty){
-                for(docChange in snapshot.documentChanges){
-                    if(docChange.type == DocumentChange.Type.REMOVED && currentUser != null){
-                        if(docChange.document.id == currentUser.uid){
-                            listener.remove()
-                            val emergencyDoneFragment = EmergencyDoneFragment()
-                            requireActivity().supportFragmentManager.beginTransaction()
-                                .replace(R.id.container_acceptance,emergencyDoneFragment)
-                                .commit()
-                        }
-                    }
+        if (currentUser != null){
+            //ouvir para o caso o socorrista já tenho encerrado a emergência
+            listener = FirebaseFirestore.getInstance().collection("acceptances").document(currentUser.uid)
+                .addSnapshotListener{snapshot, e ->
+                if(e != null){
+                    Toast.makeText(requireContext(),"Houve algum erro. Por favor tente novamente!", Toast.LENGTH_LONG).show()
+                    //mudar para fragment anterior
+                    return@addSnapshotListener
+                }
+                //verificar se o documento foi excluído
+                if(snapshot != null && !snapshot.exists()){
+                    listener.remove()
+                    val emergencyDoneFragment = EmergencyDoneFragment()
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container_acceptance,emergencyDoneFragment)
+                        .commit()
                 }
             }
         }

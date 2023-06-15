@@ -8,12 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.acceptance.AcceptanceActivity
-import br.com.minhaempresa.teethkids.acceptance.WaitFragment
 import br.com.minhaempresa.teethkids.databinding.FragmentDetailEmergencyBinding
 import br.com.minhaempresa.teethkids.helper.FirebaseMyUser
-import br.com.minhaempresa.teethkids.menu.MenuActivity
 import br.com.minhaempresa.teethkids.menu.emergency.EmergenciesFragment
+import br.com.minhaempresa.teethkids.menu.reputation.recyclerViewReputation.ImageAdapter
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 
 
 class DetailEmergencyFragment : Fragment() {
@@ -24,7 +27,7 @@ class DetailEmergencyFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentDetailEmergencyBinding.inflate(inflater, container, false)
         return(binding.root)
@@ -34,13 +37,33 @@ class DetailEmergencyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val currentUser = FirebaseMyUser.getCurrentUser()
         //Pegar os dados do item selecionado na RecyclerView e setar eles aqui...
         val emergency = arguments?.getParcelable("emergency", Emergency::class.java)
+        val currentUser = FirebaseMyUser.getCurrentUser()
+        val imageUrls = mutableListOf<String>()
 
         if (emergency!=null){
             binding.tvEmergencyName.text = emergency.name
             binding.tvEmergencyPhone.text = emergency.phoneNumber
+
+            val storageReference = Firebase.storage.reference.child("uploads/${emergency.uid}")
+            storageReference.listAll()
+                .addOnSuccessListener { listResult ->
+                    val totalImages = listResult.items.size
+                    var imagesLoaded = 0
+
+                    listResult.items.forEach{ imageRef ->
+                        imageRef.downloadUrl.addOnSuccessListener { uri ->
+                            imageUrls.add(uri.toString())
+                            imagesLoaded++
+
+                            if(imagesLoaded == totalImages){
+                                binding.viewPager.adapter = ImageAdapter(requireContext(),imageUrls)
+                            }
+                        }
+
+                    }
+                }
         }
 
         binding.btnAceitar.setOnClickListener {
