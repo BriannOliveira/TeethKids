@@ -30,7 +30,6 @@
         android:layout_below="@+id/tvTitulo"
         />
 
-
     <TextView
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
@@ -42,6 +41,7 @@
         android:textSize="15dp"
         android:textColor="@color/greenbl"
         android:textStyle="bold"
+        android:fontFamily="@font/nexa_heavy"
         >
     </TextView>
 
@@ -76,9 +76,8 @@
         android:textSize="15dp"
         android:textColor="@color/greenbl"
         android:textStyle="bold"
+        android:fontFamily="@font/nexa_heavy"
         >
-
-
     </TextView>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -104,36 +103,37 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:text="Login"
         android:layout_below="@+id/tiPassword"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="220dp"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:backgroundTint="@color/greenbl"
-        android:textColor="@color/white"
-        android:background="@drawable/button_custom"
-        android:textStyle="bold">
+        android:textSize="18sp"
+        android:backgroundTint="@color/whitetheme"
+        android:textColor="@color/greenbl"
+        android:paddingStart="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/nexa_heavy"
+        android:textAlignment="center">
 
-    </Button>
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnCriarconta"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:text="Criar conta"
         android:layout_below="@+id/btnLogin"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:backgroundTint="@color/greenbl"
-        android:textColor="@color/white"
-        android:background="@drawable/button_custom"
-        android:textStyle="bold">
-    </Button>
-
-
+        android:textSize="18sp"
+        android:backgroundTint="@color/whitetheme"
+        android:textColor="@color/greenbl"
+        android:paddingStart="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/nexa_heavy">
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
 </RelativeLayout>

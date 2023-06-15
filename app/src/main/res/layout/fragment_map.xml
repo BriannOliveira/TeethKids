@@ -1,16 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".acceptance.MapFragment">
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/btnSendLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Enviar loc"/>
+  <com.google.android.gms.maps.MapView
+      android:id="@+id/mapView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="700dp"
+        android:backgroundTint="@color/whitetheme"
+        android:elevation="8dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="0dp">
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@drawable/cardview_custom_shape"
+          android:elevation="8dp"
+          android:backgroundTint="@color/whitetheme">
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btnSendLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/whitetheme"
+            android:text="Enviar sua localização"
+            android:textStyle="bold"
+            android:fontFamily="@font/nexa_heavy"
+            android:textColor="@color/greenbl"
+            android:paddingStart="20dp"
+            app:icon="@drawable/baseline_location_on_24"
+            app:iconTint="@color/greenbl"
+            android:layout_marginTop="10dp"
+            />
+
+        <ProgressBar
+            android:id="@+id/pbSendLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_marginTop="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:progressTint="@color/greenbl"
+            android:visibility="gone"/>
+
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btnFinishEmergency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/whitetheme"
+            android:text="Encerrar a emergência"
+            android:textStyle="bold"
+            android:fontFamily="@font/nexa_heavy"
+            android:textColor="@color/black"
+            android:paddingStart="20dp"
+            app:icon="@drawable/baseline_check_24"
+            app:iconTint="@color/black"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"/>
+      </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

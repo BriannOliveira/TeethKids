@@ -37,6 +37,7 @@
         android:textStyle="bold"
         android:textColor="@color/greenbl"
         android:layout_marginTop="50dp"
+        android:fontFamily="@font/nexa_heavy"
         >
 
     </TextView>
@@ -57,34 +58,40 @@
 
     </EditText>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnVoltar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Voltar"
-        android:textSize="20sp"
-        android:layout_below="@id/etCurriculo"
-        android:layout_marginTop="45dp"
+        android:textSize="18sp"
+        android:layout_below="@id/btnAvancar"
+        android:layout_marginTop="20dp"
         android:layout_alignStart="@id/etCurriculo"
-        android:backgroundTint="@color/greenbl"
-        android:textColor="@color/white"
-        android:background="@drawable/button_custom"
-        android:textStyle="bold">
-    </Button>
+        android:backgroundTint="@color/whitetheme"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginEnd="50dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/nexa_heavy">
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnAvancar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enviar"
+        android:text="Concluir"
         android:layout_below="@+id/etCurriculo"
-        android:layout_marginTop="45dp"
-        android:textSize="20sp"
+        android:layout_marginTop="60dp"
+        android:textSize="18sp"
         android:layout_alignEnd="@id/etCurriculo"
-        android:backgroundTint="@color/greenbl"
-        android:textColor="@color/white"
-        android:background="@drawable/button_custom"
-        android:textStyle="bold">
-    </Button>
+        android:backgroundTint="@color/whitetheme"
+        android:textColor="@color/greenbl"
+        android:paddingStart="20dp"
+        android:textStyle="bold"
+        android:layout_marginStart="60dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/nexa_heavy"
+        >
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
 
 </RelativeLayout>

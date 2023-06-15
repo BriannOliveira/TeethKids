@@ -25,7 +25,8 @@
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:textStyle="bold"
-        android:textColor="@color/whitetheme"/>
+        android:textColor="@color/whitetheme"
+        android:fontFamily="@font/nexa_heavy"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvEditProfile"
@@ -46,7 +47,8 @@
                 android:textSize="16sp"
                 android:layout_marginTop="50dp"
                 android:textColor="@color/grayblack"
-                android:layout_marginStart="25dp"/>
+                android:layout_marginStart="25dp"
+                android:fontFamily="@font/nexa_heavy"/>
 
 
             <TextView
@@ -88,7 +90,8 @@
                 android:textColor="@color/grayblack"
                 android:layout_below="@id/v1"
                 android:layout_marginTop="15dp"
-                android:layout_marginStart="25dp"/>
+                android:layout_marginStart="25dp"
+                android:fontFamily="@font/nexa_heavy"/>
 
 
             <TextView
@@ -132,7 +135,8 @@
                 android:textColor="@color/grayblack"
                 android:layout_below="@id/v2"
                 android:layout_marginTop="15dp"
-                android:layout_marginStart="25dp"/>
+                android:layout_marginStart="25dp"
+                android:fontFamily="@font/nexa_heavy"/>
 
             <TextView
                 android:id="@+id/tvEditResume"
@@ -159,32 +163,34 @@
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/btnEditData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="230dp"
+                android:layout_height="40dp"
                 android:backgroundTint="@color/whitetheme"
                 android:text="Alterar dados"
-                android:textColor="@color/greenbl"
+                android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="40dp" />
-
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/btnSaveData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Salvar"
-                android:backgroundTint="@color/whitetheme"
-                android:textColor="@color/greenbl"
-                android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="40dp"
-                android:visibility="gone"/>
+                android:fontFamily="@font/nexa_heavy"
+                android:textAlignment="center"/>
 
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/btnSaveData"
+                android:layout_width="230dp"
+                android:layout_height="40dp"
+                android:text="Salvar"
+                android:backgroundTint="@color/whitetheme"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="40dp"
+                android:visibility="gone"
+                android:fontFamily="@font/nexa_heavy"
+                android:textAlignment="center"/>
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
-
 </RelativeLayout>

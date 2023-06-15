@@ -23,19 +23,22 @@
         android:layout_above="@id/btnConfirmPhoto"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnConfirmPhoto"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="60dp"
         android:text="Confirmar"
-        android:background="@drawable/button_custom"
         app:cornerRadius="10dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="50dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textColor="@color/greenbl"
+        android:backgroundTint="@color/whitetheme"
+        android:fontFamily="@font/nexa_heavy"
+        android:textAlignment="center"/>
 
 
 </RelativeLayout>

@@ -54,6 +54,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:24.5.0'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
     //GERAIS
     implementation 'androidx.core:core-ktx:1.7.0'

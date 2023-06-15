@@ -39,11 +39,12 @@
                 android:text="Título"
                 android:textColor="@color/darkred"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/nexa_heavy"/>
 
             <TextView
                 android:id="@+id/item_emergencia_tempo"
-                android:layout_width="60dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/item_emergencia_titulo"
                 android:layout_alignParentEnd="true"
@@ -51,7 +52,8 @@
                 android:text="Tempo"
                 android:textSize="11sp"
                 android:textStyle=""
-                android:textAlignment="textEnd"/>
+                android:textAlignment="textEnd"
+                android:fontFamily="@font/nexa_heavy"/>
 
             <TextView
                 android:id="@+id/item_emergencia_descricao"
@@ -64,12 +66,9 @@
                 android:layout_toEndOf="@id/item_emergencia_foto"
                 android:maxLines="6"
                 android:text="Descrição"
-                android:textColor="@color/darkred"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textStyle="bold"/>
 
         </RelativeLayout>
-
-
     </androidx.cardview.widget.CardView>
-
 </LinearLayout>

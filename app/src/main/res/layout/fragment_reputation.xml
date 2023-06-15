@@ -16,7 +16,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@color/whitetheme"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/nexa_heavy"/>
 
     <TextView
         android:id="@+id/tvMédia"
@@ -28,7 +29,8 @@
         android:textColor="@color/whitetheme"
         android:textStyle="bold"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/nexa_heavy"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvAverage"
@@ -63,7 +65,8 @@
                 android:layout_marginStart="70dp"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/greenbl"/>
+                android:textColor="@color/greenbl"
+                android:fontFamily="@font/nexa_heavy"/>
 
 
         </RelativeLayout>
@@ -79,7 +82,8 @@
         android:textSize="22sp"
         android:layout_below="@+id/cvAverage"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/nexa_heavy"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvAvaliations"

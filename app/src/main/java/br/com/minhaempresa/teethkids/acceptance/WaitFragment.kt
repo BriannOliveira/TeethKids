@@ -42,15 +42,15 @@ class WaitFragment : Fragment() {
             }
 
             if(snapshot != null && !snapshot.isEmpty){
-                for (docChange in snapshot.documentChanges){
+                for(docChange in snapshot.documentChanges){
                     if(docChange.type == DocumentChange.Type.ADDED && currentUser != null){
-                        if (docChange.document.id == currentUser.uid){
+                        if(docChange.document.id == currentUser.uid){
+                            listener.remove()
                             binding.pbWait.visibility = View.GONE
                             val mapFragment = MapFragment()
                             requireActivity().supportFragmentManager.beginTransaction()
                                 .replace(R.id.container_acceptance,mapFragment)
                                 .commit()
-                            listener.remove()
                         }
                     }
                 }

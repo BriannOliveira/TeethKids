@@ -16,7 +16,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/item_reputation_photo"
@@ -35,7 +36,8 @@
                 android:text="20/04"
                 android:textColor="@color/gray"
                 android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/nexa_heavy"/>
 
             <TextView
                 android:id="@+id/item_reputation_name"
@@ -49,6 +51,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_toEndOf="@id/item_reputation_photo"
+                android:fontFamily="@font/nexa_heavy"
                 />
 
 
@@ -78,7 +81,8 @@
                 android:textColor="@color/greenbl"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/nexa_heavy"/>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

@@ -38,6 +38,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@color/greenbl"
+        android:fontFamily="@font/nexa_heavy"
         />
 
     <EditText
@@ -66,6 +67,7 @@
         android:textStyle="bold"
         android:textColor="@color/greenbl"
         android:layout_marginTop="25dp"
+        android:fontFamily="@font/nexa_heavy"
         />
 
     <EditText
@@ -107,32 +109,40 @@
         android:background="@drawable/rounded_edittext"
         />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnAvancar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enviar"
+        android:text="Avançar"
         android:layout_below="@+id/etEndereco3"
-        android:layout_marginTop="45dp"
-        android:textSize="20sp"
-        android:layout_alignEnd="@id/etTelefone"
-        android:backgroundTint="@color/greenbl"
-        android:textColor="@color/white"
-        android:background="@drawable/button_custom"
-        android:textStyle="bold"/>
+        android:layout_marginTop="60dp"
+        android:textSize="18sp"
+        android:layout_alignEnd="@id/etEndereco3"
+        android:backgroundTint="@color/whitetheme"
+        android:textColor="@color/greenbl"
+        android:paddingStart="20dp"
+        android:textStyle="bold"
+        android:layout_marginStart="60dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/nexa_heavy"
+        >
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnVoltar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Voltar"
-        android:textSize="20sp"
-        android:layout_below="@id/etEndereco3"
-        android:layout_marginTop="45dp"
-        android:layout_alignStart="@id/etTelefone"
-        android:backgroundTint="@color/greenbl"
-        android:textColor="@color/white"
-        android:background="@drawable/button_custom"
-        android:textStyle="bold"/>
+        android:textSize="18sp"
+        android:layout_below="@id/btnAvancar"
+        android:layout_marginTop="20dp"
+        android:layout_alignStart="@id/etEndereco3"
+        android:backgroundTint="@color/whitetheme"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginEnd="50dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/nexa_heavy">
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
 
 </RelativeLayout>

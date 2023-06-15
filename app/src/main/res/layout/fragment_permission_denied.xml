@@ -38,6 +38,8 @@
         android:textAlignment="center"
         android:fontFamily="@font/nexa_heavy"
         android:textColor="@color/lightgreen"
+        android:layout_marginTop="10dp"
+        android:justificationMode="inter_word"
         />
 
     <TextView
@@ -52,11 +54,12 @@
         android:textAlignment="center"
         android:fontFamily="@font/nexa_heavy"
         android:textColor="@color/lightgreen"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"
+        android:justificationMode="inter_word"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabAtivar"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvOrientacacao2"
         android:layout_marginTop="30dp"
@@ -67,6 +70,7 @@
         android:textColor="@color/lightgreen"
         android:textAlignment="center"
         android:backgroundTint="@color/whitetheme"
+        android:fontFamily="@font/nexa_heavy"
         />
 
 </RelativeLayout>

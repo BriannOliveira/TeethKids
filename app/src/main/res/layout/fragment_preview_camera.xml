@@ -11,21 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnTirarfoto"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Tirar foto"
-        android:backgroundTint="@color/greenbl"
+        android:backgroundTint="@color/whitetheme"
         android:textSize="20sp"
         android:layout_marginBottom="75dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:textColor="@color/white"
-        android:background="@drawable/button_custom"
+        android:textColor="@color/greenbl"
         android:textStyle="bold"
         app:cornerRadius="10dp"
+        android:fontFamily="@font/nexa_heavy"
+        android:textAlignment="center"
         />
 
     <ImageButton
