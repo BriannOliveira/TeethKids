@@ -13,15 +13,14 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:title="iTooth"
-        app:titleTextColor="@color/whitetheme"
-        app:titleMarginStart="172dp"/>
+        app:title=""/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/nav_view" />
+        android:layout_above="@+id/nav_view"
+        android:layout_below="@id/my_toolbar"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

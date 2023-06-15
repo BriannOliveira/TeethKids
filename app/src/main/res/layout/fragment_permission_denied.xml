@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.NotificationsDisabledFragment"
+    tools:context=".menu.PermissionsDeniedFragment"
     android:id="@+id/notification_disabled_fragment">
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_height="180dp"
         android:src="@drawable/atencao"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"/>
+        android:layout_marginTop="30dp"/>
 
     <TextView
         android:id="@+id/tvCliente"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="Prezado Cliente,"
         android:textSize="35sp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="225dp"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/nexa_heavy"
         android:textColor="@color/greenbl"
@@ -30,22 +30,36 @@
         android:id="@+id/tvOrientacacao"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="para acessar o aplicativo orientamos o uso obrigatório das notificações para o recebimento de emergências."
+        android:text="para o acesso ao aplicativo, deve-se permitir as notificações e permitir o acesso a sua localização para a devida responsabilidade às emergências."
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tvCliente"
         android:backgroundTint="@color/white"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textAlignment="center"
         android:fontFamily="@font/nexa_heavy"
         android:textColor="@color/lightgreen"
         />
 
+    <TextView
+        android:id="@+id/tvOrientacacao2"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Caso há indisponibilidade de aceitar emergências, fique tranquilo que oferecemos uma funcionalidade para tal ocasião."
+        android:layout_below="@id/tvOrientacacao"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/white"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/nexa_heavy"
+        android:textColor="@color/lightgreen"
+        android:layout_marginTop="20dp"/>
+
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabAtivar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvOrientacacao"
-        android:layout_marginTop="50dp"
+        android:layout_below="@id/tvOrientacacao2"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:text="Ativar"
         android:textStyle="bold"

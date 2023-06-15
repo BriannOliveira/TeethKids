@@ -23,7 +23,14 @@ class EmergencyAdapter(
             itemEmergenciaBinding.itemEmergenciaTitulo.text = emergency.name
             itemEmergenciaBinding.itemEmergenciaDescricao.text = emergency.phoneNumber
             //colocar foto
-            itemEmergenciaBinding.itemEmergenciaTempo.setText("${emergency.time.toMinutesFromNow().toInt()} min atrás")
+            if(emergency.time.toMinutesFromNow() < 1){
+                itemEmergenciaBinding.itemEmergenciaTempo.setText("Agora")
+            } else if (emergency.time.toMinutesFromNow() >= 1 && emergency.time.toMinutesFromNow() < 60){
+                itemEmergenciaBinding.itemEmergenciaTempo.setText("${emergency.time.toMinutesFromNow().toInt()} min atrás")
+            } else{
+                itemEmergenciaBinding.itemEmergenciaTempo.setText("${emergency.time.toMinutesFromNow().toInt()/60}h atrás")
+            }
+
         }
 
         init {
@@ -49,6 +56,11 @@ class EmergencyAdapter(
 
     override fun onBindViewHolder(holder: EmergencyViewHolder, position: Int) {
         holder.bindEmergency(emergencies[position])
+    }
+
+    override fun getItemId(position: Int): Long {
+        return super.getItemId(position)
+        return (emergencies[position].time._seconds * 1000).toLong() + (emergencies[position].time._nanoseconds * 1000000).toLong()
     }
 
     interface RecyclerViewEvent{

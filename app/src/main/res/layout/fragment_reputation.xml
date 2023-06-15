@@ -16,7 +16,7 @@
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@color/whitetheme"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="40dp"/>
 
     <TextView
         android:id="@+id/tvMédia"

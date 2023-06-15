@@ -13,7 +13,7 @@
         android:layout_height="120dp"
         android:src="@drawable/avatar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"/>
+        android:layout_marginTop="80dp"/>
 
     <TextView
         android:id="@+id/tvEditPhoto"
@@ -32,7 +32,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tvEditPhoto"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="0dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -156,23 +157,27 @@
                 android:visibility="gone"/>
 
 
-            <Button
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/btnEditData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_custom"
+                android:backgroundTint="@color/whitetheme"
                 android:text="Alterar dados"
+                android:textColor="@color/greenbl"
+                android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="40dp"/>
+                android:layout_marginBottom="40dp" />
 
-            <Button
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/btnSaveData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_custom"
                 android:text="Salvar"
+                android:backgroundTint="@color/whitetheme"
+                android:textColor="@color/greenbl"
+                android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"

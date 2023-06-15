@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 var emergencyList = mutableListOf<Emergency>()
 
 enum class Status{
-    //tem que ser exatamente igual ao typescript, inclusive as minúsculas e maiuscúlas
+    //tem que ser exatamente igual ao typescript, inclusive as minúsculas e maiúsculas
     new,
     draft,
     done
@@ -23,9 +23,6 @@ data class Time(
         val then = this._seconds.toLong() * 1000 + this._nanoseconds.toLong()/1000000
         val now = System.currentTimeMillis()
         val resultmin = TimeUnit.MILLISECONDS.toMinutes(now - then)
-        if(resultmin > 60){
-            //tratar para horas
-        }
         return resultmin
     }
 }

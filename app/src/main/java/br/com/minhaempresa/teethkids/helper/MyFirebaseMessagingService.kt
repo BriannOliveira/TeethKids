@@ -7,31 +7,41 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.provider.Settings
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.login.MainActivity
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.google.firebase.messaging.ktx.remoteMessage
 
 const val channelId = "notification_channel"
 const val channelName = "br.com.minhaempresa.teethkids.helper"
 
 class MyFirebaseMessagingService: FirebaseMessagingService() {
 
+    val currentUser = FirebaseMyUser.getCurrentUser()
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
-
-         if (message.data.isNotEmpty()){
-            triggerNotification(message.data["title"]!!, message.data["body"]!!)
+        if (currentUser != null){
+            FirebaseFirestore.getInstance().collection("user").document(currentUser.uid).get()
+                .addOnCompleteListener{doc ->
+                    if(doc.result["status"] == true){
+                        if (message.data.isNotEmpty()){
+                            triggerNotification(message.data["title"]!!, message.data["body"]!!)
+                        }
+                    }
+                }
         }
     }
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        //sendRegistrationToServer(token)
+        if(currentUser != null){
+            FirebaseFirestore.getInstance().collection("user").document(currentUser.uid)
+                .update("fcmToken",token)
+        }
     }
 
     private fun triggerNotification(title: String, msg: String){
@@ -53,7 +63,9 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
             .setContentText(msg)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000))
+            .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
             .setOnlyAlertOnce(true)
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

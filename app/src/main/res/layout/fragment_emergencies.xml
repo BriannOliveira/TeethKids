@@ -19,8 +19,9 @@
             android:textStyle="bold"
             android:textSize="40sp"
             android:textColor="@color/greenbl"
-            android:layout_marginTop="80dp"
-            android:layout_marginStart="30dp"/>
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/imgIconLogo"/>
         <TextView
             android:id="@+id/tvWelcome2"
             android:layout_width="wrap_content"
@@ -32,6 +33,15 @@
             android:layout_below="@id/tvWelcome"
             android:layout_marginBottom="20dp"
             android:layout_alignStart="@id/tvWelcome"/>
+
+        <ImageView
+            android:id="@+id/imgIconLogo"
+            android:layout_width="100dp"
+            android:layout_height="90dp"
+            android:src="@drawable/itooth_logo"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="0dp"
+            android:layout_alignTop="@id/tvWelcome"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvStatus"
@@ -101,6 +111,12 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
             android:background="@color/white">
+            
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_rv"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvEmergencias"
@@ -109,6 +125,8 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="30dp"
                 />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         </androidx.cardview.widget.CardView>
     </RelativeLayout>

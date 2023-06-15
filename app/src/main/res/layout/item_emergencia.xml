@@ -47,10 +47,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/item_emergencia_titulo"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="15dp"
                 android:text="Tempo"
                 android:textSize="11sp"
-                android:textStyle="" />
+                android:textStyle=""
+                android:textAlignment="textEnd"/>
 
             <TextView
                 android:id="@+id/item_emergencia_descricao"

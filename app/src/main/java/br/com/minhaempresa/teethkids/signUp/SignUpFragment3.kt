@@ -47,15 +47,6 @@ class SignUpFragment3 : Fragment() {
                     snackbar.setBackgroundTint(Color.RED)
                     snackbar.show()
                 } else {
-                    Log.d("Mensagem", "Nome: ${viewModel.uiState.value.name}")
-                    Log.d("Mensagem", "Email: ${viewModel.uiState.value.email}")
-                    Log.d("Mensagem", "Senha: ${viewModel.uiState.value.password}")
-                    Log.d("Mensagem", "Telefone: ${viewModel.uiState.value.phone}")
-                    Log.d("Mensagem", "Endereço 1: ${viewModel.uiState.value.addressone}")
-                    Log.d("Mensagem", "Endereço 2: ${viewModel.uiState.value.addresstwo}")
-                    Log.d("Mensagem", "Endereço 3: ${viewModel.uiState.value.addressthree}")
-                    Log.d("Mensagem", "Currículo: ${viewModel.uiState.value.resume}")
-                    Log.d("TAG", "ViewModel hashcode: " + viewModel.hashCode())
 
                     //chamar a função de criar a conta...
                     signUpNewAccount(
@@ -67,7 +58,7 @@ class SignUpFragment3 : Fragment() {
                         viewModel.uiState.value.addresstwo,
                         viewModel.uiState.value.addressthree,
                         viewModel.uiState.value.resume,
-                        (activity as MainActivity).getFcmToken() //Não está funcionando
+                        viewModel.uiState.value.fcmToken
                     )
                 }
             }

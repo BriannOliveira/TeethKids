@@ -15,7 +15,9 @@ data class UserRegistrationUiState(
     val resume: String = "",
     val addressone: String = "",
     val addresstwo: String = "",
-    val addressthree: String = ""
+    val addressthree: String = "",
+    val fcmToken: String = ""
+
 )
 
 class UserRegistrationViewModel : ViewModel() {
@@ -70,6 +72,12 @@ class UserRegistrationViewModel : ViewModel() {
     fun updateAddressThree(address: String) {
         _uiState.update { currentState ->
             currentState.copy(addressthree = address)
+        }
+    }
+
+    fun updateFcmToken(fcmToken: String){
+        _uiState.update { currenState ->
+            currenState.copy(fcmToken = fcmToken)
         }
     }
 

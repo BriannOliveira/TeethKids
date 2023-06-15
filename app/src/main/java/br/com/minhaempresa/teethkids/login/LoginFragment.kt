@@ -44,7 +44,17 @@ class LoginFragment : Fragment() {
 
 
         binding.btnLogin.setOnClickListener{
-            login(binding.etEmail.text.toString(),binding.etSenha.text.toString())
+            if(binding.etEmail.text.toString() != null && binding.etSenha.text.toString() != null){
+                if(binding.etEmail.text!!.isNotEmpty() && binding.etSenha.text!!.isNotEmpty()){
+                    Log.d("email",binding.etEmail.text.toString())
+                    Log.d("senha", binding.etSenha.text.toString())
+                    login(binding.etEmail.text.toString(),binding.etSenha.text.toString())
+                } else {
+                    Toast.makeText(requireContext(),"Por favor, preencha os campos corretamente.",Toast.LENGTH_LONG).show()
+                }
+            } else {
+                Toast.makeText(requireContext(),"Por favor, preencha os campos corretamente.",Toast.LENGTH_LONG).show()
+            }
         }
 
         binding.btnCriarconta.setOnClickListener{
@@ -52,7 +62,6 @@ class LoginFragment : Fragment() {
         }
 
     }
-
 
     private fun hideKeyboard(){
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -78,7 +87,6 @@ class LoginFragment : Fragment() {
                     } else {
                         Toast.makeText(requireContext(),"Ocorreu um erro ao fazer o login.",Toast.LENGTH_SHORT).show()
                     }
-
                 } else {
                     if (it.exception is FirebaseAuthException) {
                         Snackbar.make(requireView(),"Não foi possível fazer o login, verifique os dados e tente novamente.", Snackbar.LENGTH_LONG).show()

@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.ActivityMainBinding
-import br.com.minhaempresa.teethkids.signUp.datastore.UserPreferencesRepository
 import br.com.minhaempresa.teethkids.signUp.model.UserRegistrationViewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
@@ -19,8 +18,6 @@ import com.google.firebase.messaging.ktx.messaging
 
 class MainActivity : AppCompatActivity() {
 
-    /** Essa atividade pode ser a do Login, renomear o nome para LoginActivity**/
-    private lateinit var userPreferencesRepository: UserPreferencesRepository
     private lateinit var binding: ActivityMainBinding
     val db = FirebaseFirestore.getInstance()
     val viewModel: UserRegistrationViewModel by viewModels()
@@ -33,22 +30,14 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    fun storeUserId(uid: String) {
-        userPreferencesRepository.uid = uid
-    }
-
     private fun storeFcmToken() {
         Firebase.messaging.token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 return@OnCompleteListener
             }
             //guardar esse token
-            userPreferencesRepository.fcmToken = task.result
+            viewModel.updateFcmToken(task.result)
         })
-    }
-
-    fun getFcmToken(): String {
-        return userPreferencesRepository.fcmToken
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,14 +52,10 @@ class MainActivity : AppCompatActivity() {
 
         FirebaseApp.initializeApp(this)
 
-        userPreferencesRepository = UserPreferencesRepository.getInstance(this)
-
         // disponibilizando o token (que deve ser colocado lá no APP CHECK do Firebase).
         prepareFirebaseAppCheckDebug()
 
         // guardar o token FCM pois iremos precisar.
         storeFcmToken()
-
-
     }
 }
