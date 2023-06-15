@@ -1,18 +1,15 @@
 package br.com.minhaempresa.teethkids.menu.emergency
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentEmergenciesBinding
-import br.com.minhaempresa.teethkids.menu.MenuActivity
+import br.com.minhaempresa.teethkids.helper.FirebaseMyUser
 import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.DetailEmergencyFragment
 import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.Emergency
 import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.EmergencyAdapter
@@ -40,7 +37,7 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
     private lateinit var functions:FirebaseFunctions
     private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
     private val db = FirebaseFirestore.getInstance()
-    lateinit var listener: ListenerRegistration
+    private lateinit var listener: ListenerRegistration
 
     //método para inflar o layout
     override fun onCreateView(
@@ -58,13 +55,12 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
 
         inflateEmergencies()
 
-        //pegando o uid do user como argumento
-        val user = arguments?.getString("user")
-        Log.d("UserArgument","$user")
+        //pegando o uid do user
+        val user = FirebaseMyUser.getCurrentUser()
 
         //configurar nome do dentista na textview
         if (user != null){
-            val docRef = db.collection("user").document(user)
+            val docRef = db.collection("user").document(user.uid)
             docRef.get().addOnSuccessListener { document ->
                 if(document != null){
                     Log.d("DocumentSnapshot data:","${document.data}")
@@ -85,7 +81,7 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
             var status = true
             if (isChecked){
                 if (user != null){
-                    val docRef = db.collection("user").document(user)
+                    val docRef = db.collection("user").document(user.uid)
                     docRef.update("status",status)
                 } else {
                     Log.d("User?","User don't exist")
@@ -93,20 +89,17 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
             } else {
                 status = false
                 if(user != null){
-                    val docRef = db.collection("user").document(user)
+                    val docRef = db.collection("user").document(user.uid)
                     docRef.update("status",status)
                 }
             }
         }
 
+        //atualizar o recyclerView
         binding.swipeRefreshRv.setOnRefreshListener {
             inflateEmergencies()
             binding.swipeRefreshRv.isRefreshing = false
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 
     override fun onDestroyView() {
@@ -150,6 +143,7 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
 
         findEmergencies().addOnCompleteListener{ task ->
 
+            //desserializando a lista de emergências
             val jsonPayload = gson.toJson(task.result.payload)
             val listType = object: TypeToken<List<Emergency>>() {}.type
             emergencyList = gson.fromJson(jsonPayload, listType)
@@ -159,11 +153,11 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
             //configurar recyclerview
             val recyclerView = binding.rvEmergencias
             val emergencyAdapter = EmergencyAdapter(emergencyList, this)
-
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.setHasFixedSize(true) //otimizar o recyclerview com um tamanho fixo
             recyclerView.adapter = emergencyAdapter
 
+            //ouvindo para novas emergências
             listener = FirebaseFirestore.getInstance().collection("emergencies").addSnapshotListener{snapshot, e ->
                 if (e != null){
                     Log.d("ErrorListenerFirestore", "Erro em ouvir mudanças no Firestore")

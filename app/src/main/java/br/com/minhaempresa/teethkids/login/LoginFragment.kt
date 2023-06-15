@@ -24,17 +24,14 @@ import com.google.firebase.ktx.Firebase
 class LoginFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
-
     private var _binding: FragmentLoginBinding? = null
     private val binding get() =_binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,25 +39,21 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.btnLogin.setOnClickListener{
-            if(binding.etEmail.text.toString() != null && binding.etSenha.text.toString() != null){
-                if(binding.etEmail.text!!.isNotEmpty() && binding.etSenha.text!!.isNotEmpty()){
-                    Log.d("email",binding.etEmail.text.toString())
-                    Log.d("senha", binding.etSenha.text.toString())
-                    login(binding.etEmail.text.toString(),binding.etSenha.text.toString())
-                } else {
-                    Toast.makeText(requireContext(),"Por favor, preencha os campos corretamente.",Toast.LENGTH_LONG).show()
-                }
+            //verificar nulidade
+            if(binding.etEmail.text!!.isNotEmpty() && binding.etSenha.text!!.isNotEmpty()){
+                Log.d("email",binding.etEmail.text.toString())
+                Log.d("senha", binding.etSenha.text.toString())
+                login(binding.etEmail.text.toString(),binding.etSenha.text.toString())
             } else {
                 Toast.makeText(requireContext(),"Por favor, preencha os campos corretamente.",Toast.LENGTH_LONG).show()
             }
         }
 
+        //criar conta nova
         binding.btnCriarconta.setOnClickListener{
             findNavController().navigate(R.id.action_Login_to_SignUp)
         }
-
     }
 
     private fun hideKeyboard(){

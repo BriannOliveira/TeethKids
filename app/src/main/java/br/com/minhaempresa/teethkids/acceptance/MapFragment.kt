@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.compose.runtime.currentRecomposeScope
 import androidx.core.content.ContextCompat
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentMapBinding
@@ -24,8 +23,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ListenerRegistration
-import com.google.type.LatLng
-
 
 class MapFragment : Fragment() {
 
@@ -40,7 +37,7 @@ class MapFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
         binding.mapView.onCreate(savedInstanceState)
         return binding.root
@@ -51,8 +48,13 @@ class MapFragment : Fragment() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
-        binding.mapView.getMapAsync { googleMap ->
-            map = googleMap
+        //configurando mapView
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            binding.mapView.getMapAsync { googleMap ->
+                map = googleMap
+                enableUserLocation()
+            }
         }
 
         //pegar o uid do socorrista
@@ -122,6 +124,8 @@ class MapFragment : Fragment() {
                 .commit()
         }
     }
+
+    //função para obter a localização para o MapView
     @SuppressLint("MissingPermission")
     private fun enableUserLocation(){
         map.isMyLocationEnabled = true

@@ -2,12 +2,10 @@ package br.com.minhaempresa.teethkids.menu
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -27,7 +25,7 @@ class MenuActivity : AppCompatActivity(){
     private val permissionsrequestCode = 1
     private val permissions = arrayOf(Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION)
 
-     fun askPermissions(){
+     private fun askPermissions(){
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
             && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             val fragmentManager = supportFragmentManager
@@ -51,15 +49,6 @@ class MenuActivity : AppCompatActivity(){
         emergenciesFragment = EmergenciesFragment()
         permissionsDeniedFragment = PermissionsDeniedFragment()
 
-        //pegando dados passados do outro fragment
-        val user = intent.getStringExtra("user")
-        Log.d("UserExtra","${user}")
-
-        //passando o dado para o menuFragment
-        val bundle = Bundle()
-        bundle.putString("user",user)
-        emergenciesFragment.arguments = bundle
-
         //configurando o fragmentManager
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.container_menu, emergenciesFragment)
@@ -70,26 +59,26 @@ class MenuActivity : AppCompatActivity(){
             Log.d("NAV","Item selected ${item.itemId}")
             when(item.itemId){
                 R.id.navigation_emergencies -> {
-                    val fragmentManager = supportFragmentManager
-                    val fragmentTransaction = fragmentManager.beginTransaction()
-                    fragmentTransaction.replace(R.id.container_menu, emergenciesFragment)
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container_menu, emergenciesFragment)
                         .commit()
                     Log.d("ItemID","Id: ${R.id.navigation_emergencies}")
                     true
                 }
                 R.id.navigation_myreputation -> {
-                    val fragmentManager = supportFragmentManager
-                    val fragmentTransaction = fragmentManager.beginTransaction()
-                    var reputationFragment = ReputationFragment()
-                    fragmentTransaction.replace(R.id.container_menu, reputationFragment)
+                    val reputationFragment = ReputationFragment()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container_menu, reputationFragment)
                         .commit()
                     true
                 }
                 R.id.navigation_profile -> {
-                    val fragmentManager = supportFragmentManager
-                    val fragmentTransaction = fragmentManager.beginTransaction()
-                    var profileFragment = ProfileFragment()
-                    fragmentTransaction.replace(R.id.container_menu, profileFragment)
+                    val profileFragment = ProfileFragment()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container_menu, profileFragment)
                         .commit()
                     true
                 }
@@ -104,6 +93,7 @@ class MenuActivity : AppCompatActivity(){
         setSupportActionBar(binding.myToolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        //configurando título da toolbar
         val title = TextView(this)
         title.text = "iTooth"
         val typeface = ResourcesCompat.getFont(this, R.font.alphakind)
@@ -124,7 +114,6 @@ class MenuActivity : AppCompatActivity(){
             permissionsrequestCode -> {
                 val allPermissionGranted = grantResults.all { it == PackageManager.PERMISSION_GRANTED }
                 if(grantResults.isNotEmpty() && allPermissionGranted){
-                    //ir para o fragment
                     //inscrever o dispositivo no tópico new_emergency para receber notificações do FCM
                     FirebaseMessaging.getInstance().subscribeToTopic("new_emergency")
                         .addOnCompleteListener{ task ->
@@ -135,6 +124,7 @@ class MenuActivity : AppCompatActivity(){
                             Log.d("FMSubscription",msg)
                         }
 
+                    //ir para o fragment emergencies
                     val fragmentManager = supportFragmentManager
                     val fragmentTransaction = fragmentManager.beginTransaction()
                     fragmentTransaction.replace(R.id.container_menu, emergenciesFragment)
@@ -152,7 +142,6 @@ class MenuActivity : AppCompatActivity(){
                 return
             }
             else -> {
-                Unit
             }
         }
     }

@@ -33,7 +33,10 @@ class WaitFragment : Fragment() {
 
         val currentUser = FirebaseMyUser.getCurrentUser()
 
+        //progressBar visível
         binding.pbWait.visibility = View.VISIBLE
+
+        //ouvindo para o socorrista aceitar
         listener = FirebaseFirestore.getInstance().collection("acceptances").addSnapshotListener { snapshot, e ->
             if(e != null){
                 Toast.makeText(requireContext(),"Houve algum erro. Por favor tente novamente!",Toast.LENGTH_LONG).show()
@@ -41,6 +44,7 @@ class WaitFragment : Fragment() {
                 return@addSnapshotListener
             }
 
+            //ir para o MapFragment
             if(snapshot != null && !snapshot.isEmpty){
                 for(docChange in snapshot.documentChanges){
                     if(docChange.type == DocumentChange.Type.ADDED && currentUser != null){

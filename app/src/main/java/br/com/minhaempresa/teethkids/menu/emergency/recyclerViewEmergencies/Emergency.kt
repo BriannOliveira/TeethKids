@@ -1,9 +1,9 @@
 package br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies
 
 import android.os.Parcelable
-import androidx.annotation.DrawableRes
 import kotlinx.parcelize.Parcelize
-import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
 var emergencyList = mutableListOf<Emergency>()
@@ -24,6 +24,13 @@ data class Time(
         val now = System.currentTimeMillis()
         val resultmin = TimeUnit.MILLISECONDS.toMinutes(now - then)
         return resultmin
+    }
+
+    fun minutesToDate(minutes: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.MINUTE, minutes)
+        val dateFormat = SimpleDateFormat("dd/MM")
+        return dateFormat.format(calendar.time)
     }
 }
 

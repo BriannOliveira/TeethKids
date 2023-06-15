@@ -41,7 +41,6 @@
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="60dp"
         android:textAlignment="center"
         android:justificationMode="inter_word"
         android:fontFamily="@font/nexa_heavy"/>

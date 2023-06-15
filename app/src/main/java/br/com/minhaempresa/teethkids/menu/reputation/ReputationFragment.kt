@@ -61,23 +61,7 @@ class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
 
     private fun buscarDados(){
 
-        val aval1 = Avaliation(
-            "20/04",
-            4.5,
-            "jflksjflkslfjklsjlkf",
-            "Briann Oliveira",
-        )
 
-        avaliationslist.add(aval1)
-
-        val aval2 = Avaliation(
-            "22/04",
-            4.8,
-            "Muito Bom!",
-            "Francisco Cardoso",
-        )
-
-        avaliationslist.add(aval2)
 
     }
 

@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentPermissionDeniedBinding
@@ -63,9 +62,11 @@ class PermissionsDeniedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //permissões
         val checkLocationPermission = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
         val checkNotficationPermission = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS)
 
+        //requerir permissões
         binding.fabAtivar.setOnClickListener {
             val permissionToRequest = mutableListOf<String>()
             if (checkNotficationPermission == PackageManager.PERMISSION_DENIED)
@@ -86,5 +87,4 @@ class PermissionsDeniedFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

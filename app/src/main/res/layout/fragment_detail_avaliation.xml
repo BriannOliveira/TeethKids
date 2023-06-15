@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu.reputation.recyclerViewReputation.DetailAvaliationFragment">
+
+    <ImageView
+        android:id="@+id/imgPhoto"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/avatar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:id="@+id/tvAvaliationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nexa_heavy"
+        android:text="Nome"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black">
+    </TextView>
+
+    <RatingBar
+        android:id="@+id/rbAvaliation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAvaliationName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/tvAvaliationTitleComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comentário:"
+        android:layout_below="@id/rbAvaliation"
+        android:layout_alignStart="@id/svAvalationComment"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nexa_heavy"
+        android:textSize="22sp"/>
+
+    <ScrollView
+        android:id="@+id/svAvalationComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvAvaliationTitleComment">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvAvaliationComment"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+                android:textSize="20sp"
+                android:fontFamily="@font/nexa_heavy"
+                android:justificationMode="inter_word"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
