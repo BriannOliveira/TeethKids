@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentLoginBinding
 import br.com.minhaempresa.teethkids.menu.MenuActivity
+import br.com.minhaempresa.teethkids.signUp.SignUpFragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
@@ -52,7 +53,10 @@ class LoginFragment : Fragment() {
 
         //criar conta nova
         binding.btnCriarconta.setOnClickListener{
-            findNavController().navigate(R.id.action_Login_to_SignUp)
+            val signUpFragment = SignUpFragment()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment_content_main, signUpFragment)
+                .commit()
         }
     }
 

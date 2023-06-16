@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignup3Binding
 import br.com.minhaempresa.teethkids.helper.FirebaseMyUser
+import br.com.minhaempresa.teethkids.login.LoginFragment
 import br.com.minhaempresa.teethkids.login.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -66,7 +67,10 @@ class SignUpFragment3 : Fragment() {
 
         //Botão para ir para o fragmento 2 do login
         binding.btnVoltar.setOnClickListener{
-            findNavController().navigate(R.id.action_SignUp3_to_SignUp2)
+            val signUpFragment2 = SignUpFragment2()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment_content_main, signUpFragment2)
+                .commit()
         }
     }
 
@@ -108,7 +112,10 @@ class SignUpFragment3 : Fragment() {
                 db.collection("user").document(userId).set(userMap)
                     .addOnSuccessListener {
                         Toast.makeText(requireContext(),"Conta cadastrada com sucesso!", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_SignUp3_to_LoginFragment)
+                        val loginFragment = LoginFragment()
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .replace(R.id.nav_host_fragment_content_main, loginFragment)
+                            .commit()
                     }
                     .addOnFailureListener{
                         Toast.makeText(requireContext(), "Falha ao cadastrar sua conta! Tente novamente.", Toast.LENGTH_SHORT).show()

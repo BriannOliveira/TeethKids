@@ -9,28 +9,31 @@ import androidx.navigation.fragment.findNavController
 import android.graphics.Color
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
 import br.com.minhaempresa.teethkids.login.MainActivity
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentSignupBinding
+import br.com.minhaempresa.teethkids.login.LoginFragment
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import java.io.File
 
 
 class SignUpFragment : Fragment() {
-
 
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
     private val cameraProviderResult =
         registerForActivityResult(ActivityResultContracts.RequestPermission()){
             if(it){
-                findNavController().navigate(R.id.action_SignUp_to_CameraPreview)
+                val cameraPreviewFragment = CameraPreviewFragment()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment_content_main, cameraPreviewFragment)
+                    .commit()
             }else{
                 Snackbar.make(binding.root, "Você não concedeu permissão para usar a câmera.", Snackbar.LENGTH_INDEFINITE).show()
             }
         }
-
-    //Variáveis da UI
-
 
     //Na inicialização da tela
     override fun onCreateView(
@@ -39,6 +42,15 @@ class SignUpFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSignupBinding.inflate(inflater, container, false)
+        //recuperando a foto salva
+        val filePath = arguments?.getString("photoPath")
+        if (filePath != null){
+            val file = File(filePath)
+            val photoUri = FileProvider.getUriForFile(requireContext(),"br.com.minhaempresa.teethkids.fileprovider",file)
+
+            //carregar a imagem no imgView
+            Glide.with(requireContext()).load(photoUri).into(binding.imgUsuario)
+        }
         return binding.root
     }
 
@@ -51,7 +63,6 @@ class SignUpFragment : Fragment() {
         binding.imgUsuario.setOnClickListener{
             cameraProviderResult.launch(android.Manifest.permission.CAMERA)
         }
-
 
         //Botão para ir para o segundo fragmento do login
         binding.btnAvancar.setOnClickListener{
@@ -83,14 +94,20 @@ class SignUpFragment : Fragment() {
                 snackbar1.show()
             }
             else{
-                findNavController().navigate(R.id.action_SignUp_to_SignUp2)
+                val signUpFragment2 = SignUpFragment2()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment_content_main, signUpFragment2)
+                    .commit()
                 }
             }
 
         //Botão voltar para a MainActivity
         binding.btnVoltar.setOnClickListener()
         {
-            findNavController().navigate(R.id.action_SignUp_comeBack)
+            val loginFragment = LoginFragment()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment_content_main, loginFragment)
+                .commit()
         }
 
     }

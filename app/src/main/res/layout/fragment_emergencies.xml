@@ -115,25 +115,39 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
             android:background="@color/white">
-            
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipe_refresh_rv"
-                android:scrollbars="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvEmergencias"
-                android:layout_width="330dp"
-                android:layout_height="390dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="30dp"
-                />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/swipe_refresh_rv"
+                    android:scrollbars="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvEmergencias"
+                        android:layout_width="330dp"
+                        android:layout_height="390dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="30dp"
+                        />
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+                <TextView
+                    android:id="@+id/tvNoEmergencies"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:text="Não há emergências abertas. Puxe para cima para carregar novas emergências."
+                    android:textAlignment="center"
+                    android:fontFamily="@font/nexa_heavy"
+                    android:textSize="20sp"
+                    android:layout_marginTop="90dp"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone"/>
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
     </RelativeLayout>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

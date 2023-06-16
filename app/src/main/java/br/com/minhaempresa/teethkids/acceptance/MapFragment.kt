@@ -109,16 +109,17 @@ class MapFragment : Fragment() {
         //finalizar a emergência
         binding.btnFinishEmergency.setOnClickListener {
             FirebaseFirestore.getInstance().collection("emergencies").document(uidRescuer)
-                .update("status",Status.done)
-
-            if(currentUser != null){
-                FirebaseFirestore.getInstance().collection("acceptances").document(currentUser.uid)
-                    .delete()
-            }
-            val emergencyDoneFragment = EmergencyDoneFragment()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container_acceptance,emergencyDoneFragment)
-                .commit()
+                .update("status",Status.done).addOnSuccessListener {
+                    if(currentUser != null){
+                        FirebaseFirestore.getInstance().collection("acceptances").document(currentUser.uid)
+                            .delete().addOnSuccessListener {
+                                val emergencyDoneFragment = EmergencyDoneFragment()
+                                requireActivity().supportFragmentManager.beginTransaction()
+                                    .replace(R.id.container_acceptance,emergencyDoneFragment)
+                                    .commit()
+                            }
+                    }
+                }
         }
     }
 

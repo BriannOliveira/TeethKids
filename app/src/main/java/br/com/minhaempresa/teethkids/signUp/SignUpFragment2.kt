@@ -59,13 +59,19 @@ class SignUpFragment2 : Fragment() {
                 Log.d("TAG", "ViewModel hashcode: " + viewModel.hashCode())
 
                 //Próximo fragment
-                findNavController().navigate(R.id.action_SignUp2_to_SignUp3)
+                val signUpFragment3 = SignUpFragment3()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment_content_main, signUpFragment3)
+                    .commit()
             }
         }
 
         //Botão para ir para o primeiro fragmento do login
         binding.btnVoltar.setOnClickListener{
-            findNavController().navigate(R.id.action_SignUp2_to_SignUp)
+            val signUpFragment = SignUpFragment()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment_content_main, signUpFragment)
+                .commit()
         }
     }
 

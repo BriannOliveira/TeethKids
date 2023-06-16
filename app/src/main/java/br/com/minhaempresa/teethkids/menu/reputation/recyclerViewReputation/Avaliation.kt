@@ -12,5 +12,6 @@ data class Avaliation(
     var rate: Double,
     var comment: String,
     var name: String,
+    val uid_dentista: String,
 ) : Parcelable
 

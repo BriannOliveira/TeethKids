@@ -148,7 +148,12 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
             val listType = object: TypeToken<List<Emergency>>() {}.type
             emergencyList = gson.fromJson(jsonPayload, listType)
             emergencyList.sortBy { it.time._seconds * 1000 + it.time._nanoseconds/1000000} //filtrando por emergênia mais antiga
-            Log.d("EmergencyList", emergencyList.toString())
+
+            if (emergencyList.isEmpty()){
+                binding.tvNoEmergencies.visibility = View.VISIBLE
+            } else {
+                binding.tvNoEmergencies.visibility = View.GONE
+            }
 
             //configurar recyclerview
             val recyclerView = binding.rvEmergencias
@@ -156,6 +161,8 @@ class EmergenciesFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent{
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.setHasFixedSize(true) //otimizar o recyclerview com um tamanho fixo
             recyclerView.adapter = emergencyAdapter
+
+
 
             //ouvindo para novas emergências
             listener = FirebaseFirestore.getInstance().collection("emergencies").addSnapshotListener{snapshot, e ->

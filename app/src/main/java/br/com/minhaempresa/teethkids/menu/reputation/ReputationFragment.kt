@@ -31,6 +31,8 @@ import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import java.text.NumberFormat
+import java.util.Locale
 
 
 class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
@@ -53,7 +55,11 @@ class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        inflateAvaliations()
+        val currentUser = FirebaseMyUser.getCurrentUser()
+
+        if(currentUser != null){
+            inflateAvaliations(currentUser.uid)
+        }
 
         //configurando cardview estilizado
         val shapeAppearanceModel = ShapeAppearanceModel()
@@ -65,6 +71,13 @@ class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
             .build()
 
         binding.cvAvaliations.shapeAppearanceModel = shapeAppearanceModel
+
+        binding.swipeRefreshRv.setOnRefreshListener {
+            if (currentUser != null){
+                inflateAvaliations(currentUser.uid)
+            }
+            binding.swipeRefreshRv.isRefreshing = false
+        }
 
     }
 
@@ -92,39 +105,23 @@ class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
 
     }
 
-    private fun findAvaliations(): Task<CustomResponse> {
+    private fun findAvaliations(userId: String): Task<CustomResponse> {
         functions = Firebase.functions("southamerica-east1")
 
-        val currentUser = FirebaseMyUser.getCurrentUser()
-
-
-        return if (currentUser != null) {
-            functions
+        return functions
                 .getHttpsCallable("findAvaliations")
-                .call(currentUser.uid)
+                .call(userId)
                 .continueWith { task ->
                     gson.toJson(task)
                     val result =
                         gson.fromJson((task.result?.data as String), CustomResponse::class.java)
                     result
                 }
-        } else {
-            return functions
-                .getHttpsCallable("findAvaliations")
-                .call()
-                .continueWith { task ->
-                    gson.toJson(task)
-                    val result =
-                        gson.fromJson((task.result?.data as String), CustomResponse::class.java)
-                    result
-                }
-        }
     }
 
+    private fun inflateAvaliations(userId: String){
 
-    private fun inflateAvaliations(){
-
-        findAvaliations().addOnCompleteListener { task ->
+        findAvaliations(userId).addOnCompleteListener { task ->
 
             //deserializar a lista de emergências
             val jsonPayload = gson.toJson(task.result.payload)
@@ -132,31 +129,30 @@ class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
             avaliationslist = gson.fromJson(jsonPayload, listType)
             avaliationslist.sortByDescending { it.time._seconds * 1000 + it.time._nanoseconds/1000000}
 
+            //configurando média da progress bar
+            var total = 0.0
+            for (item in avaliationslist){
+
+                total += item.rate
+            }
+            var media = (total/(avaliationslist.size))*20
+            if (avaliationslist.isNotEmpty()){
+                binding.tvImNew.visibility = View.GONE
+                binding.pbAverage.progress = media.toInt()
+                val numberFormat = NumberFormat.getInstance(Locale.getDefault())
+                binding.tvPerCentAvarage.setText("${numberFormat.format(media)} %")
+            } else {
+                binding.pbAverage.progress = 0
+                binding.tvPerCentAvarage.setText("--")
+                binding.tvImNew.visibility = View.VISIBLE
+            }
+
             //configurar o recyclerView
             var recyclerView = binding.rvAvaliations
             var avaliationAdapter = AvaliationAdapter(avaliationslist,this)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.setHasFixedSize(true)
             recyclerView.adapter = avaliationAdapter
-
-            //listener para novas avaliações
-            listener = FirebaseFirestore.getInstance().collection("ratings").addSnapshotListener{ snapshot, e ->
-                if (e != null){
-                    Log.d("ErrorListenerFirestore", "Erro em ouvir mudanças no Firestore")
-                    return@addSnapshotListener
-                }
-
-                if(snapshot != null && !snapshot.isEmpty){
-                    for (docChange in snapshot.documentChanges){
-                        if(docChange.type == DocumentChange.Type.ADDED){
-                            val newAvaliation = gson.fromJson(gson.toJson(docChange.document.data),Avaliation::class.java)
-                            avaliationslist.add(newAvaliation)
-                            avaliationslist.sortByDescending { it.time._seconds * 1000 + it.time._nanoseconds/1000000 }
-                            avaliationAdapter.notifyItemInserted(emergencyList.size - 1)
-                        }
-                    }
-                }
-            }
         }
     }
 }

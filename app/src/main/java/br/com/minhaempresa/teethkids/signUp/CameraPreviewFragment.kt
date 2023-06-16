@@ -21,6 +21,8 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import br.com.minhaempresa.teethkids.databinding.FragmentPreviewCameraBinding
 import java.io.File
+import androidx.appcompat.app.AppCompatActivity
+
 
 
 class CameraPreviewFragment : Fragment() {
@@ -64,7 +66,10 @@ class CameraPreviewFragment : Fragment() {
         }
 
         binding.ibtnClose.setOnClickListener {
-            findNavController().navigate(R.id.action_CameraPreview_to_SignUp)
+            val signUpFragment = SignUpFragment()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment_content_main, signUpFragment)
+                .commit()
         }
     }
 
@@ -113,8 +118,15 @@ class CameraPreviewFragment : Fragment() {
                         Log.i("CameraPreview", "A imagem foi salva no diretório: ${file.toURI()}")
 
                         //passar a imagem para o PhotoTakenFragment
-                        PhotoTakenFragment.newInstance(file)
-                        findNavController().navigate(R.id.action_CameraPreview_to_TakenPhotoFragment)
+                        val photoTakenFragment = PhotoTakenFragment()
+                        val bundle = Bundle()
+                        bundle.putString("photoPath", file.absolutePath)
+                        photoTakenFragment.arguments = bundle
+
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .replace(R.id.nav_host_fragment_content_main, photoTakenFragment)
+                            .addToBackStack(null)
+                            .commit()
                     }
 
                     override fun onError(exception: ImageCaptureException) {

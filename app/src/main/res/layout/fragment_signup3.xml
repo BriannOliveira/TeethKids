@@ -50,7 +50,6 @@
         android:layout_below="@+id/tvCurriculo"
         android:layout_centerHorizontal="true"
         android:hint="Digite aqui seu currículo..."
-        android:inputType="textMultiLine"
         android:minLines="5"
         android:background="@drawable/rounded_edittext"
         android:layout_marginTop="10dp"
