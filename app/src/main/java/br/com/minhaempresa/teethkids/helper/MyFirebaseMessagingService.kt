@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.login.MainActivity
@@ -27,10 +28,14 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
         if (currentUser != null){
             FirebaseFirestore.getInstance().collection("user").document(currentUser.uid).get()
                 .addOnCompleteListener{doc ->
-                    if(doc.result["status"] == true){
-                        if (message.data.isNotEmpty()){
-                            triggerNotification(message.data["title"]!!, message.data["body"]!!)
-                        }
+                    if(doc.isSuccessful){
+                        if(doc.result["status"] == true){
+                            if (message.data.isNotEmpty()){
+                                triggerNotification(message.data["title"]!!, message.data["body"]!!)
+                            }
+                      }
+                    } else {
+                        Log.d("TriggerNotification", "Failed to get document")
                     }
                 }
         }

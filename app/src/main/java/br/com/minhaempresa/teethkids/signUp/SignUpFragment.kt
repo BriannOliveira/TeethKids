@@ -26,7 +26,11 @@ class SignUpFragment : Fragment() {
     private val cameraProviderResult =
         registerForActivityResult(ActivityResultContracts.RequestPermission()){
             if(it){
-                val cameraPreviewFragment = CameraPreviewFragment()
+                val cameraPreviewFragment = CameraPreviewFragment().apply {
+                    arguments = Bundle().apply {
+                        putString("source", CameraPreviewFragment.SOURCE_SIGNUP)
+                    }
+                }
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.nav_host_fragment_content_main, cameraPreviewFragment)
                     .commit()
@@ -97,6 +101,7 @@ class SignUpFragment : Fragment() {
                 val signUpFragment2 = SignUpFragment2()
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.nav_host_fragment_content_main, signUpFragment2)
+                    .addToBackStack(null)
                     .commit()
                 }
             }

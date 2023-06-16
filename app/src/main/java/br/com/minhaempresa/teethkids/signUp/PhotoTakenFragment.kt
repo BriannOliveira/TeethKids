@@ -13,6 +13,9 @@ import androidx.navigation.fragment.findNavController
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentPhotoTakenBinding
 import br.com.minhaempresa.teethkids.helper.FirebaseMyUser
+import br.com.minhaempresa.teethkids.menu.profile.ProfileFragment
+import br.com.minhaempresa.teethkids.signUp.CameraPreviewFragment.Companion.SOURCE_PROFILE
+import br.com.minhaempresa.teethkids.signUp.CameraPreviewFragment.Companion.SOURCE_SIGNUP
 import com.bumptech.glide.Glide
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -74,14 +77,22 @@ class PhotoTakenFragment : Fragment() {
                     }.addOnSuccessListener {
                         // Trata o caso em que o upload foi bem sucedido
                         //passar a imagem para o SignUp
-                        val signUpFragment = SignUpFragment()
-                        val bundle = Bundle()
-                        bundle.putString("photoPath", file.absolutePath)
-                        signUpFragment.arguments = bundle
+                        val source = arguments?.getString("source")
+                        if(source == SOURCE_PROFILE){
+                            val profileFragment = ProfileFragment()
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.container_menu,profileFragment)
+                                .commit()
+                        } else if (source == SOURCE_SIGNUP){
+                            val signUpFragment = SignUpFragment()
+                            val bundle = Bundle()
+                            bundle.putString("photoPath", file.absolutePath)
+                            signUpFragment.arguments = bundle
 
-                        requireActivity().supportFragmentManager.beginTransaction()
-                            .replace(R.id.nav_host_fragment_content_main, signUpFragment)
-                            .commit()
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.nav_host_fragment_content_main, signUpFragment)
+                                .commit()
+                        }
                     }
                 }
             }

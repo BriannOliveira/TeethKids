@@ -26,7 +26,8 @@
         android:layout_marginTop="5dp"
         android:textStyle="bold"
         android:textColor="@color/whitetheme"
-        android:fontFamily="@font/nexa_heavy"/>
+        android:fontFamily="@font/nexa_heavy"
+        android:clickable="true"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvEditProfile"

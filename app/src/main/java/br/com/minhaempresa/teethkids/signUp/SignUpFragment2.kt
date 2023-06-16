@@ -62,6 +62,7 @@ class SignUpFragment2 : Fragment() {
                 val signUpFragment3 = SignUpFragment3()
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.nav_host_fragment_content_main, signUpFragment3)
+                    .addToBackStack(null)
                     .commit()
             }
         }

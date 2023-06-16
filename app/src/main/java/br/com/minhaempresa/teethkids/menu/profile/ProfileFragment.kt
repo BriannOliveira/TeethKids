@@ -8,18 +8,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentProfileBinding
 import br.com.minhaempresa.teethkids.helper.FirebaseMyUser
+import br.com.minhaempresa.teethkids.signUp.CameraPreviewFragment
+import br.com.minhaempresa.teethkids.signUp.CameraPreviewFragment.Companion.SOURCE_PROFILE
+import com.bumptech.glide.Glide
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     val db =  FirebaseFirestore.getInstance()
-
+    private val cameraProviderResult =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()){
+            if(it){
+                val cameraPreviewFragment = CameraPreviewFragment().apply {
+                    arguments = Bundle().apply {
+                        putString("source",SOURCE_PROFILE)
+                    }
+                }
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container_menu, cameraPreviewFragment)
+                    .commit()
+            }else{
+                Snackbar.make(binding.root, "Você não concedeu permissão para usar a câmera.", Snackbar.LENGTH_INDEFINITE).show()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +54,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var user = FirebaseMyUser.getCurrentUser()
 
         //configurando cardview estilizado
         val shapeAppearanceModel = ShapeAppearanceModel()
@@ -43,8 +66,19 @@ class ProfileFragment : Fragment() {
             .build()
         binding.cvEditProfile.shapeAppearanceModel = shapeAppearanceModel
 
+        //carregando foto do usuário
+        if(user != null){
+            Firebase.storage.reference.child("dentista/${user.uid}")
+                .downloadUrl.addOnSuccessListener { uri ->
+                    val downloadUrl = uri.toString()
+
+                    Glide.with(requireContext())
+                        .load(downloadUrl)
+                        .into(binding.imgEditPhoto)
+                }
+        }
+
         //carregando as informações do usuário nas textviews
-        var user = FirebaseMyUser.getCurrentUser()
         if (user!=null)
         {
             var docRef = db.collection("user").document(user.uid)
@@ -66,7 +100,12 @@ class ProfileFragment : Fragment() {
             Log.d("UserEdit?","Usuário não encontrado.")
         }
 
+        //mudar foto
+        binding.tvEditPhoto.setOnClickListener {
+            cameraProviderResult.launch(android.Manifest.permission.CAMERA)
+        }
 
+        //editar dados
         binding.btnEditData.setOnClickListener {
 
             //ocultando os textviews e mostrando as edittexts
@@ -91,6 +130,7 @@ class ProfileFragment : Fragment() {
             binding.etEditResume.requestFocus()
         }
 
+        //salvar dados
         if(user != null){
             binding.btnSaveData.setOnClickListener {
 

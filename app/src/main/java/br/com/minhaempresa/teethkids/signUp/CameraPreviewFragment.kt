@@ -22,7 +22,7 @@ import java.util.concurrent.Executors
 import br.com.minhaempresa.teethkids.databinding.FragmentPreviewCameraBinding
 import java.io.File
 import androidx.appcompat.app.AppCompatActivity
-
+import br.com.minhaempresa.teethkids.menu.profile.ProfileFragment
 
 
 class CameraPreviewFragment : Fragment() {
@@ -66,10 +66,18 @@ class CameraPreviewFragment : Fragment() {
         }
 
         binding.ibtnClose.setOnClickListener {
-            val signUpFragment = SignUpFragment()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_fragment_content_main, signUpFragment)
-                .commit()
+            val source = arguments?.getString("source")
+            if (source == SOURCE_PROFILE){
+                val profileFragment = ProfileFragment()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container_menu, profileFragment)
+                    .commit()
+            } else if(source == SOURCE_SIGNUP){
+                val signUpFragment = SignUpFragment()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment_content_main, signUpFragment)
+                    .commit()
+            }
         }
     }
 
@@ -121,12 +129,19 @@ class CameraPreviewFragment : Fragment() {
                         val photoTakenFragment = PhotoTakenFragment()
                         val bundle = Bundle()
                         bundle.putString("photoPath", file.absolutePath)
+                        bundle.putString("source",arguments?.getString("source"))
                         photoTakenFragment.arguments = bundle
 
-                        requireActivity().supportFragmentManager.beginTransaction()
-                            .replace(R.id.nav_host_fragment_content_main, photoTakenFragment)
-                            .addToBackStack(null)
-                            .commit()
+                        val source = arguments?.getString("source")
+                        if (source == SOURCE_PROFILE){
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.container_menu, photoTakenFragment)
+                                .commit()
+                        } else if(source == SOURCE_SIGNUP){
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.nav_host_fragment_content_main, photoTakenFragment)
+                                .commit()
+                        }
                     }
 
                     override fun onError(exception: ImageCaptureException) {
@@ -136,5 +151,10 @@ class CameraPreviewFragment : Fragment() {
                 }
             )
         }
+    }
+
+    companion object{
+        const val SOURCE_PROFILE = "source_profile"
+        const val SOURCE_SIGNUP = "source_signup"
     }
 }

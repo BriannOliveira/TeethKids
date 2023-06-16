@@ -1,7 +1,6 @@
 package br.com.minhaempresa.teethkids.menu.reputation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,22 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.minhaempresa.teethkids.R
 import br.com.minhaempresa.teethkids.databinding.FragmentReputationBinding
 import br.com.minhaempresa.teethkids.helper.FirebaseMyUser
-import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.Emergency
 import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.EmergencyAdapter
-import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.Status
-import br.com.minhaempresa.teethkids.menu.emergency.recyclerViewEmergencies.emergencyList
 import br.com.minhaempresa.teethkids.menu.reputation.recyclerViewReputation.Avaliation
 import br.com.minhaempresa.teethkids.menu.reputation.recyclerViewReputation.AvaliationAdapter
 import br.com.minhaempresa.teethkids.menu.reputation.recyclerViewReputation.DetailAvaliationFragment
 import br.com.minhaempresa.teethkids.menu.reputation.recyclerViewReputation.avaliationslist
 import br.com.minhaempresa.teethkids.signUp.model.CustomResponse
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
@@ -41,7 +33,6 @@ class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
     private val binding get() = _binding!!
     private lateinit var functions: FirebaseFunctions
     private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
-    private lateinit var listener: ListenerRegistration
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -135,7 +126,7 @@ class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
 
                 total += item.rate
             }
-            var media = (total/(avaliationslist.size))*20
+            val media = (total/(avaliationslist.size))*20
             if (avaliationslist.isNotEmpty()){
                 binding.tvImNew.visibility = View.GONE
                 binding.pbAverage.progress = media.toInt()
@@ -148,8 +139,8 @@ class ReputationFragment : Fragment(), EmergencyAdapter.RecyclerViewEvent {
             }
 
             //configurar o recyclerView
-            var recyclerView = binding.rvAvaliations
-            var avaliationAdapter = AvaliationAdapter(avaliationslist,this)
+            val recyclerView = binding.rvAvaliations
+            val avaliationAdapter = AvaliationAdapter(avaliationslist,this)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.setHasFixedSize(true)
             recyclerView.adapter = avaliationAdapter

@@ -110,13 +110,15 @@ class MapFragment : Fragment() {
         binding.btnFinishEmergency.setOnClickListener {
             FirebaseFirestore.getInstance().collection("emergencies").document(uidRescuer)
                 .update("status",Status.done).addOnSuccessListener {
-                    if(currentUser != null){
+                    if(isAdded && currentUser != null){
                         FirebaseFirestore.getInstance().collection("acceptances").document(currentUser.uid)
                             .delete().addOnSuccessListener {
-                                val emergencyDoneFragment = EmergencyDoneFragment()
-                                requireActivity().supportFragmentManager.beginTransaction()
-                                    .replace(R.id.container_acceptance,emergencyDoneFragment)
-                                    .commit()
+                                if(isAdded){
+                                    val emergencyDoneFragment = EmergencyDoneFragment()
+                                    requireActivity().supportFragmentManager.beginTransaction()
+                                        .replace(R.id.container_acceptance,emergencyDoneFragment)
+                                        .commit()
+                                }
                             }
                     }
                 }
